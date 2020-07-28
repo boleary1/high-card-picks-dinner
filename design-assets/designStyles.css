@@ -1,15 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
 body {
-    /* background: rgb(45,114,10);
-    background: radial-gradient(circle, rgba(45,114,10,1) 50%, rgba(15,98,11,1) 80%, rgba(47,51,44,1) 100%); */
-
-    /* background: rgb(11,163,96);
-    background: radial-gradient(circle, rgba(11,163,96,1) 44%, rgba(60,186,146,1) 67%, rgba(77,79,76,1) 100%); */
-
-    /* background: rgb(39,186,121);
-background: radial-gradient(circle, rgba(39,186,121,1) 24%, rgba(60,186,146,1) 67%); */
-
 background: rgb(46,179,72);
 background: radial-gradient(circle, rgba(46,179,72,1) 28%, rgba(37,111,45,1) 67%);
 }
@@ -42,4 +33,4 @@ p.score {
     .nav-wrapper .brand-logo {
       font-size: 1.3rem;
     }
-
+}
