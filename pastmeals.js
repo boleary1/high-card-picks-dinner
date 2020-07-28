@@ -7,13 +7,9 @@ $(document).ready(function() {
     const searchBtn = $('button.search');
     const nameEl = $('input#name')
 
-    // List of objects, to be replaced by real list in memeory, something like:
-    // const historyData = JSON.parse(localStorage.getItem('historyKEY'));
+    // array to be used to store the information which will be saves in local storage
     let historyData = [];
-    //     {Name:"person1", Date:"day1", APIobj: JSON.stringify({key:'1'})}, // Or use image/link directly?
-    //     {Name:"person2", Date:"day2", APIobj: JSON.stringify({key:'2'})},
-    //     {Name:"person3", Date:"day3", APIobj: JSON.stringify({key:'3'})},
-    // ];
+
 
     $('select').formSelect(); //From materialize - not sure if i need this.
 
