@@ -16,12 +16,10 @@
     <header>
         <nav class="nav-extended">
             <div class="nav-wrapper green darken-4">
-
-
-                <a href="#" class="brand-logo center"><i class="material-icons left">local_dining</i>High Card
-                    Picks Dinner<i class="material-icons right">local_dining</i></a>
-
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"></a>
+                <!-- <i class="material-icons left">local_dining</i> -->
+                <!-- <i class="material-icons right">local_dining</i> -->
+                <a href="#" class="brand-logo center">High Card Picks Dinner</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="left hide-on-med-and-down">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Meal History</a></li>
@@ -41,6 +39,13 @@
 
         <!-- Begin Game Section -->
         <div id="game-div" class="container">
+            <div class="start">
+                <i class="medium material-icons left white-text">local_dining</i>
+                <button id="start-btn" class="btn-large green darken-2 center-align hoverable modal-trigger"
+                    data-target="start-modal">Start New Game</button>
+                <i class="medium material-icons right white-text">local_dining</i>
+            </div>
+
             <div class="row valign-wrapper">
                 <!-- Player 1 -->
                 <div class="col s4">
@@ -54,7 +59,8 @@
                 <!-- Deal Button -->
                 <div class="col s4">
                     <div class="row">
-                        <button class="col s12 btn green waves-effect darken-4 white-text hoverable">Deal!</button>
+                        <button id="deal-btn"
+                            class="col s12 btn green waves-effect darken-4 white-text hoverable">Deal!</button>
                     </div>
                 </div>
                 <!-- Player 2 -->
@@ -66,6 +72,38 @@
                         <p class="score center-align white-text">Score: <span id="p2-score">4</span></p>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Modal to start game  -->
+        <div id="start-modal" class="modal">
+            <div class="modal-content">
+                <h3 class="center-align">Game Rules</h3>
+                <p class="flow-text">Can’t decide on dinner plans?! "Let High Card Picks Dinner" choose! Enter your
+                    names
+                    below and click
+                    Let's Play! Then click the deal button to reveal your cards. High card earns 1 point. No points are
+                    awarded for ties. The first person to 5 points wins and gets to search for a recipe/restaurant –
+                    dinner plans solved!</p>
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="p1-name-input" type="text" class="validate">
+                                <label for="p1-name-input">Player One</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="p1-name-input" type="text" class="validate">
+                                <label for="p1-name-input">Player Two</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="submit-start" class="modal-close waves-effect waves-green btn-flat">Let's Play!</button>
             </div>
         </div>
         <!-- End Game Section -->
