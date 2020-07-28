@@ -6,23 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="./displayStyles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./design-assets/designStyles.css">
     <title>High Card Picks Dinner</title>
 
 </head>
 
 <body>
     <header>
-        <nav>
-            <div class="nav-wrapper">
+        <nav class="nav-extended">
+            <div class="nav-wrapper green darken-4">
                 <a href="#" class="brand-logo center">High Card Picks Dinner</a>
-                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="left hide-on-med-and-down">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Meal History</a></li>
                 </ul>
             </div>
         </nav>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Meal History</a></li>
+        </ul>
     </header>
+
+
+    <main>
+
+
+        <div class="container" id="game-div">
+
+            <div class="row valign-wrapper">
+                <div class="col s4">
+                    <div class="container">
+                        <h2 class="player center-align white-text">Player 1</h2>
+                        <img id="card-player-1" class="responsive-img" src="./design-assets/card-back.png"
+                            alt="back of playing card" />
+                        <p class="score center-align white-text">Score: 2</p>
+                    </div>
+                </div>
+
+                <div class="col s4">
+                    <div class="row">
+                        <button class="col s12 btn green waves-effect darken-4 white-text hoverable">Deal!</button>
+                    </div>
+
+                </div>
+                <div class="col s4">
+                    <div class="container">
+                        <h2 class="player center-align white-text">Player 2</h2>
+                        <img id="card-player-2" class="responsive-img" src="./design-assets/card-back.png"
+                            alt="back of playing card" />
+                        <p class="score center-align white-text">Score: 4</p>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+    </main>
+
+
 
 
 
@@ -34,6 +87,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <!-- Materialize -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="./design-assets/design.js"></script>
 </body>
 
 </html>
