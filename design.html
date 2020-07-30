@@ -19,12 +19,11 @@
                 <a href="#" class="brand-logo center">High Card Picks Dinner</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="left hide-on-med-and-down">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Meal History</a></li>
+                    <li><a id="home-link" href="#">Home</a></li>
+                    <li><a id="past-link" href="#">Past Meals</a></li>
                     <!-- This button is used for testing the hide/show function so we can go from game to api search to past meals list -->
-                    <li id="show-game">Show Game </li>
-                    <li id="show-search">Show Search </li>
-                    <li id="show-past">Show Past Meals </li>
+                    <li><a id="show-search" href="#">Show Search</a></li>
+
                 </ul>
             </div>
         </nav>
@@ -207,7 +206,7 @@
         <!-- End Meal Search Section -->
 
         <!-- Begin Past Meal Section -->
-        <div id="past-div" class="container">
+        <div id="past-div" class="container hide">
 
             <div class="row white-text">
                 <h2 class="center-align">Past Meals</h2>
