@@ -1,25 +1,36 @@
-$(document).ready(function () {
+$(document).ready(function() {
+	// Selectors for main divs - game, recipe search, meal history
+	const gameDiv = $('div#game-div');
+	const startBtn = $('button#start-btn');
+	const searchDiv = $('div#search-div');
 
-    // Selectors for main divs - game, recipe search, meal history
-    const gameDiv = $('div#game-div');
-    const startBtn = $('button#start-btn');
+	// for testing only - hide and show different divs
+	const showGameBtn = $('#show-game');
+	const showSearchBtn = $('#show-search');
 
-    // for testing only - hide and show different divs
-    const hideGameBtn = $('#hide-game');
+	function hideShow(element) {
+		element.toggleClass('hide');
+	}
 
-    function hideShow(element) {
-        element.toggleClass("hide");
-    }
+	$('#search-btn').on('click', function() {
+		event.preventDefault();
+		console.log($('#meal-category').val());
+	});
 
-    hideGameBtn.on("click", function () {
-        hideShow(gameDiv);
-    })
+	showGameBtn.on('click', function() {
+		hideShow(gameDiv);
+	});
 
-    // Materialize Side Nav Menu for Mobile
-    $('.sidenav').sidenav();
+	showSearchBtn.on('click', function() {
+		hideShow(searchDiv);
+	});
 
-    // Materialize Initialization for Modal
-    $('.modal').modal();
+	// Materialize Side Nav Menu for Mobile
+	$('.sidenav').sidenav();
 
+	// Materialize Initialization for Modal
+	$('.modal').modal();
 
+	// Materialize Initialization for Select
+	$('select').formSelect();
 });
