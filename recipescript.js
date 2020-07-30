@@ -4,7 +4,7 @@ var mealRecipe = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772";
 
 
 $.ajax({
-    url: recipeCategories,
+    url: recipeCategories, //this Ajax call will display all recipe cattagories the meal db offers
     method: "GET",
 })
     .then(function (responseRecipeCategories) {
@@ -12,12 +12,12 @@ $.ajax({
         var a = responseRecipeCategories.categories
         // console.log(a)
         a.forEach(function (entry) {
-            console.log(entry.strCategory);//displays catagories
+            console.log(entry.strCategory);
         });
         $(".currentUVIndexDisplay").html("UV Index: " + responsethree.current.uvi)
     });
 
-$.ajax({
+$.ajax({ // this ajax call will display recipes in a selected cattagory
     url: recipeSelection,
     method: "GET",
 })
@@ -26,9 +26,9 @@ $.ajax({
         var b = responserecipeSelection.meals
         // console.log(b)
         b.forEach(function (displayoptions) {
-            console.log(displayoptions.idMeal);//displays catagories
-            console.log(displayoptions.strMeal);//displays catagories
-            console.log(displayoptions.strMealThumb);//displays catagories
+            console.log(displayoptions.idMeal);
+            console.log(displayoptions.strMeal);
+            console.log(displayoptions.strMealThumb);
 
         });
 
