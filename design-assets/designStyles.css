@@ -1,46 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
 body {
-background: rgb(46,179,72);
-background: radial-gradient(circle, rgba(46,179,72,1) 28%, rgba(37,111,45,1) 67%);
+	background: rgb(46, 179, 72);
+	background: radial-gradient(circle, rgba(46, 179, 72, 1) 28%, rgba(37, 111, 45, 1) 67%);
 }
 
-nav  {
-    margin-bottom: 20px;
+nav {
+	margin-bottom: 20px;
 }
 
-div.start {
-    display: flex;
-    justify-content: center;
+div.start,
+div.search {
+	display: flex;
+	justify-content: center;
 }
-
 
 header .brand-logo {
-    font-family: Staatliches, sans-serif;
+	font-family: Staatliches, sans-serif;
 }
 
 div .game-div row {
-    
-    height:100%;
-    
+	height: 100%;
 }
 
-h2.player  {
-    font-size: 2rem;
+h2.player {
+	font-size: 2rem;
 }
 
 p.score {
-    font-size: 1.5rem;
+	font-size: 1.5rem;
 }
 
 div.modal h3 {
-    font-size: 1.7rem;
-    padding: 5px;
+	font-size: 1.7rem;
+	padding: 5px;
 }
 
+div.search form {
+	width: 50%;
+}
 
 @media (max-width: 600px) {
-    .nav-wrapper .brand-logo {
-      font-size: 1rem;
-    }
+	.nav-wrapper .brand-logo {
+		font-size: 1rem;
+	}
 }
