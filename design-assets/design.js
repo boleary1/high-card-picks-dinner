@@ -3,10 +3,12 @@ $(document).ready(function() {
 	const gameDiv = $('div#game-div');
 	const startBtn = $('button#start-btn');
 	const searchDiv = $('div#search-div');
+	const pastDiv = $('div#past-div');
 
 	// for testing only - hide and show different divs
 	const showGameBtn = $('#show-game');
 	const showSearchBtn = $('#show-search');
+	const showPastBtn = $('#show-past');
 
 	function hideShow(element) {
 		element.toggleClass('hide');
@@ -23,6 +25,10 @@ $(document).ready(function() {
 
 	showSearchBtn.on('click', function() {
 		hideShow(searchDiv);
+	});
+
+	showPastBtn.on('click', function() {
+		hideShow(pastDiv);
 	});
 
 	// Materialize Side Nav Menu for Mobile
