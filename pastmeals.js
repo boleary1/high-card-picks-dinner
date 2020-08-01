@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // The div that will hold the populated images, past winners and dates
-    const historyContainer = $('div.history-div');
+    const historyContainer = $('div#past-recipe-cards');
 
     // array to be used to store the information which will be saves in local storage
     let historyData = [];
@@ -12,24 +12,25 @@ $(document).ready(function() {
 
     function populateHistory() {
         console.log(historyData)
-        // If history data exists, create a card for each object and add the img, meal name, who picked it, and date
+        // If history data exists, create a card for each object and add the img, meal name, who picked it, date, and link
         if (historyData[0].Name) {
             historyData.forEach(function(object){
                 const historyDiv = $('<div>').addClass('col s12 m3');
                 const historyCard = $('<div>').addClass('card');
                 const cardImgDiv = $('<div>').addClass('card-img');
-               // const aLink = $('<a>').attr('href', object.RecipeLink).attr('target', '_blank');
-                const img = $('<img>').attr('src', object.ImgURL).attr('alt', object.Meal).attr('id', 'past-recipe-img');
-                const textDiv = $('<div>').addClass('card-content');
-                const mealName = $('<p>').addClass('card-title').attr('id', 'past-recipe-name').text(object.Meal);
-                const whoPicked = $('<p>').addClass('picked-by').text(`${object.Name} picked on:`);
-                const date = $('<p>').addClass('date-picked').text(`${object.Date}`);
+                const img = $('<img>').attr('src', object.ImgURL).attr('alt', object.Meal).addClass('past-recipe-img');
+                const cardContentDiv= $('<div>').addClass('card-content');
+                const mealName = $('<p>').addClass('card-title past-recipe-name').text(object.Meal);
+                const whoPickedPara = $('<p>').text('Picked by: ');
+                const pickedBySpan = $('<span>').addClass('green-text past-picked-by').text(object.Name);
+                const date = $('<p>').addClass('past-date').text(object.Date);
+                const linkDiv = $('<div>').addClass('card-action');
+                const pastRecipeLink = $('<a>').addClass('past-recipe-link').attr('href', object.RecipeLink).attr('target', '_blank').text('View Recipe');
 
-                // Wraps the imag in the link... not working... instead, try adding an event listener
-                //img.wrap(aLink);
-                textDiv.append(mealName, whoPicked, date);
-                cardImgDiv.append(img.wrap($(`<a href="${object.RecipeLink}" target="_blank">`))); //this didn't work either
-                historyCard.append(cardImgDiv, textDiv);
+                whoPickedPara.append(pickedBySpan);
+                cardContentDiv.append(mealName, whoPickedPara, date);
+                cardImgDiv.append(img);
+                historyCard.append(cardImgDiv, cardContentDiv, linkDiv);
                 historyDiv.append(historyCard);
                 historyContainer.append(historyDiv);
                 console.log(object.RecipeLink);
