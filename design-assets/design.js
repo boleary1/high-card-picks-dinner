@@ -5,6 +5,7 @@ $(document).ready(function() {
 	const searchDiv = $('div#search-div');
 	const optionsContainer = $('div.options-container');
 	const pastDiv = $('div#past-div');
+	const winnerNameEl = $('span#winner-name');
 
 	// Selectors for nav buttons
 	const homeBtn = $('a#home-link');
@@ -35,13 +36,6 @@ $(document).ready(function() {
 		gameDiv.addClass('hide');
 	});
 
-	// ******** for testing only ********* DELETE when done testing
-	showSearchBtn.on('click', function() {
-		searchDiv.removeClass('hide');
-		pastDiv.addClass('hide');
-		gameDiv.addClass('hide');
-	});
-
 	// Store Picked Meal
 
 	let pickedMeal = {};
@@ -52,6 +46,14 @@ $(document).ready(function() {
 	pickedMeal.Name = winnerName;
 
 	// *********** Game code above **********************
+
+	// ******** for testing only ********* DELETE when done testing
+	showSearchBtn.on('click', function() {
+		searchDiv.removeClass('hide');
+		pastDiv.addClass('hide');
+		gameDiv.addClass('hide');
+		winnerNameEl.text(winnerName);
+	});
 
 	// Search button event handler
 
