@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 	// Selectors for main divs - game, recipe search, meal history
 	const gameDiv = $('div#game-div');
 	const startBtn = $('button#start-btn');
@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 	// Home Button
 
-	homeBtn.on('click', function() {
+	homeBtn.on('click', function () {
 		gameDiv.removeClass('hide');
 		searchDiv.addClass('hide');
 		pastDiv.addClass('hide');
@@ -25,14 +25,14 @@ $(document).ready(function() {
 
 	// Past Meals button
 
-	pastBtn.on('click', function() {
+	pastBtn.on('click', function () {
 		pastDiv.removeClass('hide');
 		searchDiv.addClass('hide');
 		gameDiv.addClass('hide');
 	});
 
 	// ******** for testing only ********* DELETE when done testing
-	showSearchBtn.on('click', function() {
+	showSearchBtn.on('click', function () {
 		optionsContainer.empty();
 		searchDiv.removeClass('hide');
 		pastDiv.addClass('hide');
@@ -51,7 +51,7 @@ $(document).ready(function() {
 	// *********** Game code above **********************
 
 	// ******** for testing only ********* DELETE when done testing
-	showSearchBtn.on('click', function() {
+	showSearchBtn.on('click', function () {
 		searchDiv.removeClass('hide');
 		pastDiv.addClass('hide');
 		gameDiv.addClass('hide');
@@ -62,16 +62,16 @@ $(document).ready(function() {
 
 	let selectedCategory;
 
-	$('#search-btn').on('click', function() {
+	$('#search-btn').on('click', function () {
 		event.preventDefault();
 		selectedCategory = $('#meal-category').val();
 		$.ajax({
 			// this ajax call will display recipes in a selected cattagory
 			url: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=' + selectedCategory,
 			method: 'GET'
-		}).then(function(responseRecipeSelection) {
+		}).then(function (responseRecipeSelection) {
 			let b = responseRecipeSelection.meals;
-			b.forEach(function(displayoptions) {
+			b.forEach(function (displayoptions) {
 				const mealId = displayoptions.idMeal;
 				let mealLink = '';
 
@@ -81,8 +81,21 @@ $(document).ready(function() {
 					//this ajax call gets the URL for the recipe I wrote the HTML inside this, to get the URL before I write the HTML
 					url: mealRecipe,
 					method: 'GET'
-				}).then(function(mealDisplay) {
-					mealLink = mealDisplay.meals[0].strSource;
+				}).then(function (mealDisplay) {
+					if (mealDisplay.meals[0].strSource == "" || mealDisplay.meals[0].strSource == null) { //checks if the recipe link is invalid
+						if (mealDisplay.meals[0].strYoutube == "" || mealDisplay.meals[0].strYoutube == null) { //if the youtube link is invalid it completes a google search
+							const str = ((mealDisplay.meals[0].strMeal).split(' ').join('+')); //gets the string ready for google search
+							mealLink = ("https://www.google.com/search?q=" + str); //writes URL
+						}
+						else {
+							mealLink = mealDisplay.meals[0].strYoutube; //displays youtube link
+						}
+					}
+					else {
+						mealLink = mealDisplay.meals[0].strSource; //displays recipe link
+					}
+
+
 					const optionsDiv = $('<div>').addClass('options col s12 m3');
 					const optionsCard = $('<div>').addClass('card');
 					const optionsCardImgDiv = $('<div>').addClass('card-image');
@@ -97,7 +110,7 @@ $(document).ready(function() {
 					const optionsTextDiv = $('<div>').addClass('history-text card-content');
 					const optionsMealName = $('<span>').addClass('meal-name card-title').text(displayoptions.strMeal);
 					const recipeLinkDiv = $('<div>').addClass('card-action');
-					const addLinkButton = $('<a>').attr('href', mealLink).attr('target', '_blank').text('View Recipe');
+					const addLinkButton = $('<a>').attr('href', mealLink).attr('target', '_blank').text('View Recipe'); //link to external website with recipe.  Tried for the website link, youtube link, then a google search.
 
 					optionsTextDiv.append(optionsMealName);
 					addButton.append(addIcon);
@@ -113,7 +126,7 @@ $(document).ready(function() {
 
 	// Pick Recipe Button event handler
 
-	optionsContainer.on('click', 'a.pick-recipe-btn', function(event) {
+	optionsContainer.on('click', 'a.pick-recipe-btn', function (event) {
 		pickedMeal.ImgURL = $(this).siblings()[0].src;
 		pickedMeal.Date = moment().format('L');
 		pickedMeal.Meal = $(this).parent().siblings().children()[0].outerText;
