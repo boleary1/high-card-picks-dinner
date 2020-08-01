@@ -13,10 +13,6 @@ $(document).ready(function() {
 	// ****** for testing only - hide and show different divs ***** DELETE when done testing
 	const showSearchBtn = $('#show-search');
 
-	// Selector for pick recipe buttons
-
-	const optionsContainerEl = $('div.options-container');
-
 	// Nav buttons
 
 	// Home Button
@@ -37,6 +33,7 @@ $(document).ready(function() {
 
 	// ******** for testing only ********* DELETE when done testing
 	showSearchBtn.on('click', function() {
+		optionsContainer.empty();
 		searchDiv.removeClass('hide');
 		pastDiv.addClass('hide');
 		gameDiv.addClass('hide');
