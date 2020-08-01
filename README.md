@@ -14,8 +14,7 @@ The history and search can be accessed any time with links in the nav bar.
 
 
 ## Motivation
-
-* Why did we create the project?
+This project was created for the UNH Coding Bootcamp. It was our first group project, where we were tasked with 
 
 ## Tech/Framework Used
 
