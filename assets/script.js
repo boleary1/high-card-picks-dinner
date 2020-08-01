@@ -45,13 +45,15 @@ $(document).ready(function () {
 
 	$('#search-btn').on('click', function () {
 		event.preventDefault();
+		optionsContainer.empty(); //clear out last search
+
 		selectedCategory = $('#meal-category').val();
 		$.ajax({
 			// this ajax call will display recipes in a selected cattagory
 			url: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=' + selectedCategory,
 			method: 'GET'
 		}).then(function (responseRecipeSelection) {
-			let b = responseRecipeSelection.meals;
+			let b = responseRecipeSelection.meals; //creates an array of meal options in a category
 			b.forEach(function (displayoptions) {
 				const mealId = displayoptions.idMeal;
 				let mealLink = '';
@@ -175,7 +177,7 @@ $(document).ready(function () {
 
 	// ******** for testing only ********* DELETE when done testing
 	showSearchBtn.on('click', function () {
-		optionsContainer.empty();
+		// optionsContainer.empty();
 		searchDiv.removeClass('hide');
 		pastDiv.addClass('hide');
 		gameDiv.addClass('hide');
