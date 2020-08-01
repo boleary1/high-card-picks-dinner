@@ -17,32 +17,6 @@ $(document).ready(function() {
     // array to be used to store the information which will be saves in local storage
     let historyData = [];
 
-	// Nav buttons
-
-	// Home Button
-
-	homeBtn.on('click', function() {
-		gameDiv.removeClass('hide');
-		searchDiv.addClass('hide');
-		pastDiv.addClass('hide');
-	});
-
-	// Past Meals button
-
-	pastBtn.on('click', function() {
-		pastDiv.removeClass('hide');
-		searchDiv.addClass('hide');
-		gameDiv.addClass('hide');
-	});
-
-	// ******** for testing only ********* DELETE when done testing
-	showSearchBtn.on('click', function() {
-		optionsContainer.empty();
-		searchDiv.removeClass('hide');
-		pastDiv.addClass('hide');
-		gameDiv.addClass('hide');
-	});
-
 	// Store Picked Meal
 
 	let pickedMeal = {};
@@ -65,6 +39,8 @@ $(document).ready(function() {
 	// Search button event handler
 
 	let selectedCategory;
+
+
 
 	$('#search-btn').on('click', function() {
 		event.preventDefault();
@@ -160,7 +136,35 @@ $(document).ready(function() {
             historyData.push(newObj);
         }
         localStorage.setItem('historyKEY', JSON.stringify(historyData));
-    };
+	};
+
+	// Nav buttons
+
+	// Home Button
+
+	homeBtn.on('click', function() {
+		gameDiv.removeClass('hide');
+		searchDiv.addClass('hide');
+		pastDiv.addClass('hide');
+	});
+
+	// Past Meals button
+
+	pastBtn.on('click', function() {
+		getHistory();
+		populateHistory();
+		pastDiv.removeClass('hide');
+		searchDiv.addClass('hide');
+		gameDiv.addClass('hide');
+	});
+
+	// ******** for testing only ********* DELETE when done testing
+	showSearchBtn.on('click', function() {
+		optionsContainer.empty();
+		searchDiv.removeClass('hide');
+		pastDiv.addClass('hide');
+		gameDiv.addClass('hide');
+	});
 
 	// Pick Recipe Button event handler
 
