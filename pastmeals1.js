@@ -5,7 +5,7 @@ $(document).ready(function() {
     const categoryEl = $('#icon_category');
     // const searchEl = $('icon_search');
     const searchBtn = $('button.search');
-    const nameEl = $('input#name')
+    const nameEl = $('input#name');
 
     // array to be used to store the information which will be saves in local storage
     let historyData = [];
