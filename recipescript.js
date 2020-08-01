@@ -1,7 +1,7 @@
-var recipeSelection = "https://www.themealdb.com/api/json/v1/1/filter.php?c=Vegan";
+var selectedCategory = "breakfast";
+var recipeSelection = "https://www.themealdb.com/api/json/v1/1/filter.php?c=" + selectedCategory;
 var recipeCategories = "https://www.themealdb.com/api/json/v1/1/categories.php";
 var mealRecipe = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772";
-
 
 $.ajax({
     url: recipeCategories, //this Ajax call will display all recipe cattagories the meal db offers
@@ -14,26 +14,24 @@ $.ajax({
         a.forEach(function (entry) {
             console.log(entry.strCategory);
         });
-        $(".currentUVIndexDisplay").html("UV Index: " + responsethree.current.uvi)
     });
 
 $.ajax({ // this ajax call will display recipes in a selected cattagory
     url: recipeSelection,
     method: "GET",
 })
-    .then(function (responserecipeSelection) {
+    .then(function (responseRecipeSelection) {
         // console.log(responserecipeSelection)
-        var b = responserecipeSelection.meals
+        var b = responseRecipeSelection.meals
         // console.log(b)
         b.forEach(function (displayoptions) {
-            console.log(displayoptions.idMeal);
+            // console.log(displayoptions.idMeal);
             console.log(displayoptions.strMeal);
-            console.log(displayoptions.strMealThumb);
+            // console.log(displayoptions.strMealThumb);
 
         });
 
-
-        $(".currentUVIndexDisplay").html("UV Index: " + responsethree.current.uvi)
+        meal - catagory
     });
 
 $.ajax({
@@ -42,5 +40,4 @@ $.ajax({
 })
     .then(function (mealDisplay) {
         console.log(mealDisplay)
-        $(".currentUVIndexDisplay").html("UV Index: " + responsethree.current.uvi)
     });
