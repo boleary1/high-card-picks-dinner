@@ -77,7 +77,7 @@ $(document).ready(function () {
 					}
 
 
-					const optionsDiv = $('<div>').addClass('options col s12 m3');
+					const optionsDiv = $('<div>').addClass('options col s12 m6 l3');
 					const optionsCard = $('<div>').addClass('card');
 					const optionsCardImgDiv = $('<div>').addClass('card-image');
 					const optionsImg = $('<img>')
