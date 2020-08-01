@@ -8,11 +8,11 @@ $(document).ready(function () {
 	const winnerNameEl = $('span#winner-name');
 	const historyContainer = $('#past-recipe-cards');
 	// Selectors for nav buttons
-	const homeBtn = $('a#home-link');
-	const pastBtn = $('a#past-link');
+	const homeBtn = $('a.home-link');
+	const pastBtn = $('a.past-link');
 
 	// ****** for testing only - hide and show different divs ***** DELETE when done testing
-	const showSearchBtn = $('#show-search');
+	const showSearchBtn = $('a.search-link');
 
 	// array to be used to store the information which will be saves in local storage
 	let historyData = [];
@@ -23,7 +23,7 @@ $(document).ready(function () {
 
 	// ******************** Put Game Code Here **********************
 
-	let winnerName = 'Molly';
+	let winnerName = 'The Chef';
 	pickedMeal.Name = winnerName;
 
 	// *********** Game code above **********************
@@ -33,6 +33,7 @@ $(document).ready(function () {
 		searchDiv.removeClass('hide');
 		pastDiv.addClass('hide');
 		gameDiv.addClass('hide');
+		winnerName = 'The Chef';
 		winnerNameEl.text(winnerName);
 	});
 
@@ -76,7 +77,7 @@ $(document).ready(function () {
 					}
 
 
-					const optionsDiv = $('<div>').addClass('options col s12 m3');
+					const optionsDiv = $('<div>').addClass('options col s12 m6 l3');
 					const optionsCard = $('<div>').addClass('card');
 					const optionsCardImgDiv = $('<div>').addClass('card-image');
 					const optionsImg = $('<img>')
