@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 	// Selectors for main divs - game, recipe search, meal history
 	const gameDiv = $('div#game-div');
 	const startBtn = $('button#start-btn');
@@ -14,8 +14,8 @@ $(document).ready(function() {
 	// ****** for testing only - hide and show different divs ***** DELETE when done testing
 	const showSearchBtn = $('#show-search');
 
-    // array to be used to store the information which will be saves in local storage
-    let historyData = [];
+	// array to be used to store the information which will be saves in local storage
+	let historyData = [];
 
 	// Store Picked Meal
 
@@ -29,7 +29,7 @@ $(document).ready(function() {
 	// *********** Game code above **********************
 
 	// ******** for testing only ********* DELETE when done testing
-	showSearchBtn.on('click', function() {
+	showSearchBtn.on('click', function () {
 		searchDiv.removeClass('hide');
 		pastDiv.addClass('hide');
 		gameDiv.addClass('hide');
@@ -42,16 +42,16 @@ $(document).ready(function() {
 
 
 
-	$('#search-btn').on('click', function() {
+	$('#search-btn').on('click', function () {
 		event.preventDefault();
 		selectedCategory = $('#meal-category').val();
 		$.ajax({
 			// this ajax call will display recipes in a selected cattagory
 			url: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=' + selectedCategory,
 			method: 'GET'
-		}).then(function(responseRecipeSelection) {
+		}).then(function (responseRecipeSelection) {
 			let b = responseRecipeSelection.meals;
-			b.forEach(function(displayoptions) {
+			b.forEach(function (displayoptions) {
 				const mealId = displayoptions.idMeal;
 				let mealLink = '';
 
@@ -61,7 +61,7 @@ $(document).ready(function() {
 					//this ajax call gets the URL for the recipe I wrote the HTML inside this, to get the URL before I write the HTML
 					url: mealRecipe,
 					method: 'GET'
-				}).then(function(mealDisplay) {
+				}).then(function (mealDisplay) {
 					mealLink = mealDisplay.meals[0].strSource;
 					const optionsDiv = $('<div>').addClass('options col s12 m3');
 					const optionsCard = $('<div>').addClass('card');
@@ -94,56 +94,56 @@ $(document).ready(function() {
 	// Meal history code starts here, including save function
 
 	// Gets info from local storage and stores it in the historyData variable if there is any available.
-    function getHistory() {
-        historyData = JSON.parse(localStorage.getItem('historyKEY')) || [{Name:"", Meal: "", Date:"", ImgURL: "", RecipeLink: ""}];
-    };
+	function getHistory() {
+		historyData = JSON.parse(localStorage.getItem('historyKEY')) || [{ Name: "", Meal: "", Date: "", ImgURL: "", RecipeLink: "" }];
+	};
 
-    function populateHistory() {
-        // If history data exists, create a card for each object and add the img, meal name, who picked it, date, and link
-		if (historyData[0].Name){
+	function populateHistory() {
+		// If history data exists, create a card for each object and add the img, meal name, who picked it, date, and link
+		if (historyData[0].Name) {
 			historyContainer.empty();
-            historyData.forEach(function(object){
-                const historyDiv = $('<div>').addClass('col s12 m6 l3'); //Changed these classes a little
-                const historyCard = $('<div>').addClass('card');
-                const cardImgDiv = $('<div>').addClass('card-img');
-                const img = $('<img>').attr('src', object.ImgURL).attr('alt', object.Meal).addClass('past-recipe-img').width('100%');
-                const cardContentDiv= $('<div>').addClass('card-content');
-                const mealName = $('<p>').addClass('card-title past-recipe-name').text(object.Meal);
-                const whoPickedPara = $('<p>').text('Picked by: ');
-                const pickedBySpan = $('<span>').addClass('green-text past-picked-by').text(object.Name);
-                const date = $('<p>').addClass('past-date').text(object.Date);
-                const linkDiv = $('<div>').addClass('card-action');
-                const pastRecipeLink = $('<a>').addClass('past-recipe-link').attr('href', object.RecipeLink).attr('target', '_blank').text('View Recipe');
+			historyData.forEach(function (object) {
+				const historyDiv = $('<div>').addClass('col s12 m6 l3'); //Changed these classes a little
+				const historyCard = $('<div>').addClass('card');
+				const cardImgDiv = $('<div>').addClass('card-img');
+				const img = $('<img>').attr('src', object.ImgURL).attr('alt', object.Meal).addClass('past-recipe-img').width('100%');
+				const cardContentDiv = $('<div>').addClass('card-content');
+				const mealName = $('<p>').addClass('card-title past-recipe-name').text(object.Meal);
+				const whoPickedPara = $('<p>').text('Picked by: ');
+				const pickedBySpan = $('<span>').addClass('green-text past-picked-by').text(object.Name);
+				const date = $('<p>').addClass('past-date').text(object.Date);
+				const linkDiv = $('<div>').addClass('card-action');
+				const pastRecipeLink = $('<a>').addClass('past-recipe-link').attr('href', object.RecipeLink).attr('target', '_blank').text('View Recipe');
 
-                whoPickedPara.append(pickedBySpan);
-                cardContentDiv.append(mealName, whoPickedPara, date);
-                cardImgDiv.append(img);
-                linkDiv.append(pastRecipeLink);
-                historyCard.append(cardImgDiv, cardContentDiv, linkDiv);
-                historyDiv.append(historyCard);
-                historyContainer.append(historyDiv);
-            });
-        }
-    };
+				whoPickedPara.append(pickedBySpan);
+				cardContentDiv.append(mealName, whoPickedPara, date);
+				cardImgDiv.append(img);
+				linkDiv.append(pastRecipeLink);
+				historyCard.append(cardImgDiv, cardContentDiv, linkDiv);
+				historyDiv.append(historyCard);
+				historyContainer.append(historyDiv);
+			});
+		}
+	};
 
-    // Stores meal info in local storage
-    // Format of newObj: {Name: "Molly", ImgURL: "https://www.themealdb.com/images/media/meals/vxuyrx1511302687.jpg", Date: "07/31/2020", Meal: "Bean & Sausage Hotpot", RecipeLink: "https://www.bbcgoodfood.com/recipes/339607/bean-and-sausage-hotpot"}
-    // when called, call with pickedMeal
-    function saveMeal(newObj) {
-        // If the name in the first history object is blank, set the historyData to the new object; otherwise, ad the new object to the array
-        if (!historyData[0].Name) {
-            historyData = [newObj];
-        } else {
-            historyData.push(newObj);
-        }
-        localStorage.setItem('historyKEY', JSON.stringify(historyData));
+	// Stores meal info in local storage
+	// Format of newObj: {Name: "Molly", ImgURL: "https://www.themealdb.com/images/media/meals/vxuyrx1511302687.jpg", Date: "07/31/2020", Meal: "Bean & Sausage Hotpot", RecipeLink: "https://www.bbcgoodfood.com/recipes/339607/bean-and-sausage-hotpot"}
+	// when called, call with pickedMeal
+	function saveMeal(newObj) {
+		// If the name in the first history object is blank, set the historyData to the new object; otherwise, ad the new object to the array
+		if (!historyData[0].Name) {
+			historyData = [newObj];
+		} else {
+			historyData.push(newObj);
+		}
+		localStorage.setItem('historyKEY', JSON.stringify(historyData));
 	};
 
 	// Nav buttons
 
 	// Home Button
 
-	homeBtn.on('click', function() {
+	homeBtn.on('click', function () {
 		gameDiv.removeClass('hide');
 		searchDiv.addClass('hide');
 		pastDiv.addClass('hide');
@@ -151,7 +151,7 @@ $(document).ready(function() {
 
 	// Past Meals button
 
-	pastBtn.on('click', function() {
+	pastBtn.on('click', function () {
 		getHistory();
 		populateHistory();
 		pastDiv.removeClass('hide');
@@ -160,7 +160,7 @@ $(document).ready(function() {
 	});
 
 	// ******** for testing only ********* DELETE when done testing
-	showSearchBtn.on('click', function() {
+	showSearchBtn.on('click', function () {
 		optionsContainer.empty();
 		searchDiv.removeClass('hide');
 		pastDiv.addClass('hide');
@@ -169,7 +169,7 @@ $(document).ready(function() {
 
 	// Pick Recipe Button event handler
 
-	optionsContainer.on('click', 'a.pick-recipe-btn', function(event) {
+	optionsContainer.on('click', 'a.pick-recipe-btn', function (event) {
 		pickedMeal.ImgURL = $(this).siblings()[0].src;
 		pickedMeal.Date = moment().format('L');
 		pickedMeal.Meal = $(this).parent().siblings().children()[0].outerText;
@@ -181,6 +181,7 @@ $(document).ready(function() {
 		searchDiv.addClass('hide');
 		gameDiv.addClass('hide');
 	});
+	getHistory();
 
 	// Materialize JavaScript Initializations
 
@@ -192,4 +193,57 @@ $(document).ready(function() {
 
 	// Materialize Initialization for Select
 	$('select').formSelect();
+
+	// Chart stuff
+	const ctx = document.getElementById('past-winners-chart').getContext('2d');
+
+	//Creates an array of all the names from the historyData (stored in mem)
+	let names = [];
+	historyData.forEach(function (obj) {
+		names.push(obj.Name)
+	});
+
+	// Takes an array of the winners, and puts the name of each winner in the object once as well as how many times they've won
+	function howManyWins(array) {
+		let winCounts = {}
+		array.forEach(function (name) {
+			winCounts[name] = (winCounts[name] || 0) + 1;
+			console.log(winCounts);
+		});
+		return winCounts;
+	}
+
+	//Data for chart would come from historyData
+	// Labels: names, data would be the number of times a name was in the dataHistory
+	// store in an object
+	let historyChart = howManyWins(names);  // Format: {name: wins}
+	console.log(names);
+	console.log(historyChart);
+
+	// Chart settings
+	var chart = new Chart(ctx, {
+		// The type of chart we want to create
+		type: 'doughnut',
+
+		// The data for our dataset
+		data: {
+			labels: Object.keys(historyChart),  //['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+			datasets: [{
+				label: 'Wins',
+				backgroundColor: ['blue', 'yellow'],
+				borderColor: 'rgb(255, 99, 132)',
+				data: Object.values(historyChart)   //[0, 10, 5, 2, 20, 30, 45]
+			}]
+		},
+
+		// Configuration options go here
+		options: {
+			legend: {
+				labels: {
+					// This more specific font property overrides the global property
+					fontColor: 'black'
+				}
+			}
+		}
+	});
 });
