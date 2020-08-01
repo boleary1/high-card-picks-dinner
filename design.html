@@ -19,12 +19,11 @@
                 <a href="#" class="brand-logo center">High Card Picks Dinner</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="left hide-on-med-and-down">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Meal History</a></li>
+                    <li><a id="home-link" href="#">Home</a></li>
+                    <li><a id="past-link" href="#">Past Meals</a></li>
                     <!-- This button is used for testing the hide/show function so we can go from game to api search to past meals list -->
-                    <li id="show-game">Show Game </li>
-                    <li id="show-search">Show Search </li>
-                    <li id="show-past">Show Past Meals </li>
+                    <li><a id="show-search" href="#">Show Search</a></li>
+
                 </ul>
             </div>
         </nav>
@@ -143,18 +142,18 @@
 
             </div>
 
-            <div class="row">
+            <div id="recipe-cards" class="row">
                 <div class="col s12 m3">
                     <div class="card">
                         <div class="card-image">
-                            <img id="recipe-img" src="./design-assets/img/recipe-sample.jpg">
-                            <a id="pick-recipe-btn" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                            <img class="recipe-img" src="./design-assets/img/recipe-sample.jpg">
+                            <a class="btn-floating halfway-fab waves-effect waves-light red pick-recipe-btn"><i class="material-icons">add</i></a>
                         </div>
                         <div class="card-content">
-                            <span id="recipe-name" class="card-title">Recipe Name</span>
+                            <span class="recipe-name" class="card-title">Recipe Name</span>
                         </div>
                         <div class="card-action">
-                            <a id="recipe-link" href="#">View Recipe</a>
+                            <a class="recipe-link" href="#">View Recipe</a>
                         </div>
                     </div>
                 </div>
@@ -162,14 +161,14 @@
                 <div class="col s12 m3">
                     <div class="card">
                         <div class="card-image">
-                            <img id="recipe-img" src="./design-assets/img/recipe-sample.jpg">
-                            <a id="pick-recipe-btn" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                            <img class="recipe-img" src="./design-assets/img/recipe-sample.jpg">
+                            <a class="btn-floating halfway-fab waves-effect waves-light red pick-recipe-btn"><i class="material-icons">add</i></a>
                         </div>
                         <div class="card-content">
-                            <span id="recipe-name" class="card-title">Recipe Name</span>
+                            <span class="recipe-name" class="card-title">Recipe Name</span>
                         </div>
                         <div class="card-action">
-                            <a id="recipe-link" href="#">View Recipe</a>
+                            <a class="recipe-link" href="#">View Recipe</a>
                         </div>
                     </div>
                 </div>
@@ -177,14 +176,18 @@
                 <div class="col s12 m3">
                     <div class="card">
                         <div class="card-image">
-                            <img id="recipe-img" src="./design-assets/img/recipe-sample.jpg">
-                            <a id="pick-recipe-btn" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                            <img class="recipe-img" src="./design-assets/img/recipe-sample.jpg">
+                            <a class="btn-floating halfway-fab waves-effect waves-light red pick-recipe-btn"><i class="material-icons">add</i></a>
                         </div>
                         <div class="card-content">
+
                             <span id="recipe-name" class="card-title">Recipe Name, that i'm making longer to see how it functions.</span>
+
+                            <span class="recipe-name" class="card-title">Recipe Name</span>
+
                         </div>
                         <div class="card-action">
-                            <a id="recipe-link" href="#">View Recipe</a>
+                            <a class="recipe-link" href="#">View Recipe</a>
                         </div>
                     </div>
                 </div>
@@ -192,14 +195,14 @@
                 <div class="col s12 m3">
                     <div class="card">
                         <div class="card-image">
-                            <img id="recipe-img" src="./design-assets/img/recipe-sample.jpg">
-                            <a id="pick-recipe-btn" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                            <img class="recipe-img" src="./design-assets/img/recipe-sample.jpg">
+                            <a class="btn-floating halfway-fab waves-effect waves-light red pick-recipe-btn"><i class="material-icons">add</i></a>
                         </div>
                         <div class="card-content">
-                            <span id="recipe-name" class="card-title">Recipe Name</span>
+                            <span class="recipe-name" class="card-title">Recipe Name</span>
                         </div>
                         <div class="card-action">
-                            <a id="recipe-link" href="#">View Recipe</a>
+                            <a class="recipe-link" href="#">View Recipe</a>
                         </div>
                     </div>
                 </div>
@@ -209,25 +212,25 @@
         <!-- End Meal Search Section -->
 
         <!-- Begin Past Meal Section -->
-        <div id="past-div" class="container">
+        <div id="past-div" class="container hide">
 
             <div class="row white-text">
                 <h2 class="center-align">Past Meals</h2>
             </div>
 
-            <div class="row">
+            <div id="past-recipe-cards" class="row">
                 <div class="col s12 m3">
                     <div class="card">
                         <div class="card-image">
-                            <img id="past-recipe-img" src="./design-assets/img/recipe-sample.jpg">
+                            <img class="past-recipe-img" src="./design-assets/img/recipe-sample.jpg">
                         </div>
                         <div class="card-content">
-                            <p id="past-recipe-name" class="card-title">Past Recipe Name</p>
-                            <p>Picked by: <span id="past-picked-by" class="green-text">Molly</span></p>
-                            <p id="past-date">7/29/2020</p>
+                            <p class="card-title past-recipe-name">Past Recipe Name</p>
+                            <p>Picked by: <span class="green-text past-picked-by">Molly</span></p>
+                            <p class="past-date">7/29/2020</p>
                         </div>
                         <div class="card-action">
-                            <a id="past-recipe-link" href="#">View Recipe</a>
+                            <a class="past-recipe-link" href="#">View Recipe</a>
                         </div>
                     </div>
                 </div>
@@ -235,15 +238,15 @@
                 <div class="col s12 m3">
                     <div class="card">
                         <div class="card-image">
-                            <img id="past-recipe-img" src="./design-assets/img/recipe-sample.jpg">
+                            <img class="past-recipe-img" src="./design-assets/img/recipe-sample.jpg">
                         </div>
                         <div class="card-content">
-                            <p id="past-recipe-name" class="card-title">Past Recipe Name</p>
-                            <p>Picked by: <span id="past-picked-by" class="green-text">Molly</span></p>
-                            <p id="past-date">7/29/2020</p>
+                            <p class="card-title past-recipe-name">Past Recipe Name</p>
+                            <p>Picked by: <span class="green-text past-picked-by">Molly</span></p>
+                            <p class="past-date">7/29/2020</p>
                         </div>
                         <div class="card-action">
-                            <a id="past-recipe-link" href="#">View Recipe</a>
+                            <a class="past-recipe-link" href="#">View Recipe</a>
                         </div>
                     </div>
                 </div>
@@ -251,15 +254,15 @@
                 <div class="col s12 m3">
                     <div class="card">
                         <div class="card-image">
-                            <img id="past-recipe-img" src="./design-assets/img/recipe-sample.jpg">
+                            <img class="past-recipe-img" src="./design-assets/img/recipe-sample.jpg">
                         </div>
                         <div class="card-content">
-                            <p id="past-recipe-name" class="card-title">Past Recipe Name</p>
-                            <p>Picked by: <span id="past-picked-by" class="green-text">Molly</span></p>
-                            <p id="past-date">7/29/2020</p>
+                            <p class="card-title past-recipe-name">Past Recipe Name</p>
+                            <p>Picked by: <span class="green-text past-picked-by">Molly</span></p>
+                            <p class="past-date">7/29/2020</p>
                         </div>
                         <div class="card-action">
-                            <a id="past-recipe-link" href="#">View Recipe</a>
+                            <a class="past-recipe-link" href="#">View Recipe</a>
                         </div>
                     </div>
                 </div>
@@ -267,15 +270,15 @@
                 <div class="col s12 m3">
                     <div class="card">
                         <div class="card-image">
-                            <img id="past-recipe-img" src="./design-assets/img/recipe-sample.jpg">
+                            <img class="past-recipe-img" src="./design-assets/img/recipe-sample.jpg">
                         </div>
                         <div class="card-content">
-                            <p id="past-recipe-name" class="card-title">Past Recipe Name</p>
-                            <p>Picked by: <span id="past-picked-by" class="green-text">Molly</span></p>
-                            <p id="past-date">7/29/2020</p>
+                            <p class="card-title past-recipe-name">Past Recipe Name</p>
+                            <p>Picked by: <span class="green-text past-picked-by">Molly</span></p>
+                            <p class="past-date">7/29/2020</p>
                         </div>
                         <div class="card-action">
-                            <a id="past-recipe-link" href="#">View Recipe</a>
+                            <a class="past-recipe-link" href="#">View Recipe</a>
                         </div>
                     </div>
                 </div>

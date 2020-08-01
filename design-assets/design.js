@@ -8,14 +8,15 @@ $(document).ready(function () {
 
 	const pastDiv = $('div#past-div');
 
-	// for testing only - hide and show different divs
-	const showGameBtn = $('#show-game');
-	const showSearchBtn = $('#show-search');
-	const showPastBtn = $('#show-past');
+	// Selectors for nav buttons
+	const homeBtn = $('a#home-link');
+	const pastBtn = $('a#past-link');
 
-	function hideShow(element) {
-		element.toggleClass('hide');
-	}
+	// for testing only - hide and show different divs
+	const showSearchBtn = $('#show-search');
+
+	// Home button
+
 
 
 	$('#search-btn').on('click', function () {
@@ -78,6 +79,31 @@ $(document).ready(function () {
 
 	showPastBtn.on('click', function () {
 		hideShow(pastDiv);
+    
+	homeBtn.on('click', function() {
+		gameDiv.removeClass('hide');
+		searchDiv.addClass('hide');
+		pastDiv.addClass('hide');
+	});
+
+	// Past Meals button
+
+	pastBtn.on('click', function() {
+		pastDiv.removeClass('hide');
+		searchDiv.addClass('hide');
+		gameDiv.addClass('hide');
+	});
+
+	$('#search-btn').on('click', function() {
+		event.preventDefault();
+		console.log($('#meal-category').val());
+	});
+
+	// for testing only
+	showSearchBtn.on('click', function() {
+		searchDiv.removeClass('hide');
+		pastDiv.addClass('hide');
+		gameDiv.addClass('hide');
 	});
 
 	// Materialize Side Nav Menu for Mobile
