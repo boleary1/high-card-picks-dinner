@@ -100,7 +100,8 @@ $(document).ready(function() {
 
     function populateHistory() {
         // If history data exists, create a card for each object and add the img, meal name, who picked it, date, and link
-        if (historyData[0].Name) {
+		if (historyData[0].Name){
+			historyContainer.empty();
             historyData.forEach(function(object){
                 const historyDiv = $('<div>').addClass('col s12 m6 l3'); //Changed these classes a little
                 const historyCard = $('<div>').addClass('card');
