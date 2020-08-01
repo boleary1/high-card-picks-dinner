@@ -55,11 +55,10 @@ $(document).ready(function() {
     };
 
     // Stores meal info in local storage
-    function saveMeal(name, meal, picURL, recipeLink) {
+    // Format of newObj: {Name: "Molly", ImgURL: "https://www.themealdb.com/images/media/meals/vxuyrx1511302687.jpg", Date: "07/31/2020", Meal: "Bean & Sausage Hotpot", RecipeLink: "https://www.bbcgoodfood.com/recipes/339607/bean-and-sausage-hotpot"}
+    // when called, call with pickedMeal
+    function saveMeal(newObj) {
         const curDate = moment().format('MM/DD/YYYY');
-        const newObj = {Name: name, Meal: meal, Date: curDate, ImgURL: picURL, RecipeLink: recipeLink};
-        console.log(newObj);
-        console.log(historyData[0].Name);
         // If the name in the first history object is blank, set the historyData to the new object; otherwise, ad the new object to the array
         if (!historyData[0].Name) {
             historyData = [newObj];
