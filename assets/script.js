@@ -7,6 +7,7 @@ $(document).ready(function () {
 	const pastDiv = $('div#past-div');
 	const winnerNameEl = $('span#winner-name');
 	const historyContainer = $('#past-recipe-cards');
+	const mainContainer = $('main');
 	// Selectors for nav buttons
 	const homeBtn = $('a.home-link');
 	const pastBtn = $('a.past-link');
@@ -30,11 +31,15 @@ $(document).ready(function () {
 
 	// ******** for testing only ********* DELETE when done testing
 	showSearchBtn.on('click', function () {
+		mainContainer.addClass('animate_content');
 		searchDiv.removeClass('hide');
 		pastDiv.addClass('hide');
 		gameDiv.addClass('hide');
 		winnerName = 'The Chef';
 		winnerNameEl.text(winnerName);
+		setTimeout(function () {
+			mainContainer.removeClass('animate_content');
+		}, 3200);
 	});
 
 	// Search button event handler
