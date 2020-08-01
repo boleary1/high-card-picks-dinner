@@ -158,11 +158,16 @@
 
 
         <!-- Begin Past Meal Section -->
+
         <div id="past-div" class="container hide">
 
             <div class="row white-text">
                 <h2 class="center-align">Past Meals</h2>
             </div>
+
+            <!-- Chart using chart.js -->
+            <canvas id="past-winners-chart" width="" height="" aria-label="Pie Chart: Past Winners" role="img"></canvas>
+
 
             <div id="past-recipe-cards" class="row">
                 <!-- Past meal cards go here -->
@@ -189,8 +194,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <!-- Materialize -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <!-- Custom JavaScript -->
     <script src="./assets/script.js"></script>
+    <!-- <script src="./chart.js"></script> -->
 </body>
 
 </html>
