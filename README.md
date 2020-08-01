@@ -14,19 +14,30 @@ The history and search can be accessed any time with links in the nav bar.
 
 
 ## Motivation
-This project was created for the UNH Coding Bootcamp. It was our first group project, where we were tasked with 
+This project was created for the UNH Coding Bootcamp. It was our first group project, where we were tasked with coming up with and designing an application to solve a real-world problem.
+
+__The Problem__
+Multiple people are trying to figure out what to have for dinner. This could be friends, roommates, a couple, two random people who meet on the street and happen to be hungry... How can they fairly decide who gets to pick the meal before they get so hangry that they'll never agree on anything again???
+
+__The Solution__
+High Card Picks Dinner
+
+With this project, we are also:
+* practicing our skills with Git workflow - creating and merging branches and resolving conflicts as needed.
+* utilizing some new server-side APIs and a new third-party API
+* getting experience in Agile development.
 
 ## Tech/Framework Used
 
-_Built With_
+__Built With__
 * Materialize
 
 ## Features
 (what makes our project stand out?)
 
 ## API References
-*[The Meal DB](https://www.themealdb.com/api.php)
-*[Deck of Cards](https://deckofcardsapi.com/)
+* [The Meal DB](https://www.themealdb.com/api.php)
+* [Deck of Cards](https://deckofcardsapi.com/)
 
 ## Future Development
 
