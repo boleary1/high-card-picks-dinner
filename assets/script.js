@@ -63,7 +63,20 @@ $(document).ready(function () {
 					url: mealRecipe,
 					method: 'GET'
 				}).then(function (mealDisplay) {
-					mealLink = mealDisplay.meals[0].strSource;
+					if (mealDisplay.meals[0].strSource == "" || mealDisplay.meals[0].strSource == null) { //checks if the recipe link is invalid
+						if (mealDisplay.meals[0].strYoutube == "" || mealDisplay.meals[0].strYoutube == null) { //if the youtube link is invalid it completes a google search
+							const str = ((mealDisplay.meals[0].strMeal).split(' ').join('+')); //gets the string ready for google search
+							mealLink = ("https://www.google.com/search?q=" + str); //writes URL
+						}
+						else {
+							mealLink = mealDisplay.meals[0].strYoutube; //displays youtube link
+						}
+					}
+					else {
+						mealLink = mealDisplay.meals[0].strSource; //displays recipe link
+					}
+
+
 					const optionsDiv = $('<div>').addClass('options col s12 m3');
 					const optionsCard = $('<div>').addClass('card');
 					const optionsCardImgDiv = $('<div>').addClass('card-image');
@@ -78,7 +91,7 @@ $(document).ready(function () {
 					const optionsTextDiv = $('<div>').addClass('history-text card-content');
 					const optionsMealName = $('<span>').addClass('meal-name card-title').text(displayoptions.strMeal);
 					const recipeLinkDiv = $('<div>').addClass('card-action');
-					const addLinkButton = $('<a>').attr('href', mealLink).attr('target', '_blank').text('View Recipe');
+					const addLinkButton = $('<a>').attr('href', mealLink).attr('target', '_blank').text('View Recipe'); //link to external website with recipe.  Tried for the website link, youtube link, then a google search.
 
 					optionsTextDiv.append(optionsMealName);
 					addButton.append(addIcon);
