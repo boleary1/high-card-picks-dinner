@@ -3,9 +3,7 @@ $(document).ready(function() {
 	const gameDiv = $('div#game-div');
 	const startBtn = $('button#start-btn');
 	const searchDiv = $('div#search-div');
-	let selectedCategory;
 	const optionsContainer = $('div.options-container');
-
 	const pastDiv = $('div#past-div');
 
 	// Selectors for nav buttons
@@ -14,6 +12,10 @@ $(document).ready(function() {
 
 	// ****** for testing only - hide and show different divs ***** DELETE when done testing
 	const showSearchBtn = $('#show-search');
+
+	// Selector for pick recipe buttons
+
+	const optionsContainerEl = $('div.options-container');
 
 	// Nav buttons
 
@@ -40,7 +42,20 @@ $(document).ready(function() {
 		gameDiv.addClass('hide');
 	});
 
+	// Store Picked Meal
+
+	let pickedMeal = {};
+
+	// ******************** Put Game Code Here **********************
+
+	let winnerName = 'Molly';
+	pickedMeal.Name = winnerName;
+
+	// *********** Game code above **********************
+
 	// Search button event handler
+
+	let selectedCategory;
 
 	$('#search-btn').on('click', function() {
 		event.preventDefault();
@@ -89,6 +104,16 @@ $(document).ready(function() {
 				});
 			});
 		});
+	});
+
+	// Pick Recipe Button event handler
+
+	optionsContainer.on('click', 'a.pick-recipe-btn', function(event) {
+		pickedMeal.ImgURL = $(this).siblings()[0].src;
+		pickedMeal.Date = moment().format('L');
+		pickedMeal.Meal = $(this).parent().siblings().children()[0].outerText;
+		pickedMeal.RecipeLink = $(this).parent().siblings().children()[1].href;
+		console.log(pickedMeal);
 	});
 
 	// Materialize JavaScript Initializations
