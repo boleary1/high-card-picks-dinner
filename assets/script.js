@@ -176,7 +176,7 @@ $(document).ready(function () {
 
 	// ******** for testing only ********* DELETE when done testing
 	showSearchBtn.on('click', function () {
-		optionsContainer.empty();
+		// optionsContainer.empty();
 		searchDiv.removeClass('hide');
 		pastDiv.addClass('hide');
 		gameDiv.addClass('hide');
