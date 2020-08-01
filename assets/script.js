@@ -8,11 +8,11 @@ $(document).ready(function () {
 	const winnerNameEl = $('span#winner-name');
 	const historyContainer = $('#past-recipe-cards');
 	// Selectors for nav buttons
-	const homeBtn = $('a#home-link');
-	const pastBtn = $('a#past-link');
+	const homeBtn = $('a.home-link');
+	const pastBtn = $('a.past-link');
 
 	// ****** for testing only - hide and show different divs ***** DELETE when done testing
-	const showSearchBtn = $('#show-search');
+	const showSearchBtn = $('a.search-link');
 
 	// array to be used to store the information which will be saves in local storage
 	let historyData = [];
@@ -23,7 +23,7 @@ $(document).ready(function () {
 
 	// ******************** Put Game Code Here **********************
 
-	let winnerName = 'Molly';
+	let winnerName = 'The Chef';
 	pickedMeal.Name = winnerName;
 
 	// *********** Game code above **********************
@@ -33,6 +33,7 @@ $(document).ready(function () {
 		searchDiv.removeClass('hide');
 		pastDiv.addClass('hide');
 		gameDiv.addClass('hide');
+		winnerName = 'The Chef';
 		winnerNameEl.text(winnerName);
 	});
 
@@ -44,13 +45,15 @@ $(document).ready(function () {
 
 	$('#search-btn').on('click', function () {
 		event.preventDefault();
+		optionsContainer.empty(); //clear out last search
+
 		selectedCategory = $('#meal-category').val();
 		$.ajax({
 			// this ajax call will display recipes in a selected cattagory
 			url: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=' + selectedCategory,
 			method: 'GET'
 		}).then(function (responseRecipeSelection) {
-			let b = responseRecipeSelection.meals;
+			let b = responseRecipeSelection.meals; //creates an array of meal options in a category
 			b.forEach(function (displayoptions) {
 				const mealId = displayoptions.idMeal;
 				let mealLink = '';
@@ -62,8 +65,21 @@ $(document).ready(function () {
 					url: mealRecipe,
 					method: 'GET'
 				}).then(function (mealDisplay) {
-					mealLink = mealDisplay.meals[0].strSource;
-					const optionsDiv = $('<div>').addClass('options col s12 m3');
+					if (mealDisplay.meals[0].strSource == "" || mealDisplay.meals[0].strSource == null) { //checks if the recipe link is invalid
+						if (mealDisplay.meals[0].strYoutube == "" || mealDisplay.meals[0].strYoutube == null) { //if the youtube link is invalid it completes a google search
+							const str = ((mealDisplay.meals[0].strMeal).split(' ').join('+')); //gets the string ready for google search
+							mealLink = ("https://www.google.com/search?q=" + str); //writes URL
+						}
+						else {
+							mealLink = mealDisplay.meals[0].strYoutube; //displays youtube link
+						}
+					}
+					else {
+						mealLink = mealDisplay.meals[0].strSource; //displays recipe link
+					}
+
+
+					const optionsDiv = $('<div>').addClass('options col s12 m6 l3');
 					const optionsCard = $('<div>').addClass('card');
 					const optionsCardImgDiv = $('<div>').addClass('card-image');
 					const optionsImg = $('<img>')
@@ -77,7 +93,7 @@ $(document).ready(function () {
 					const optionsTextDiv = $('<div>').addClass('history-text card-content');
 					const optionsMealName = $('<span>').addClass('meal-name card-title').text(displayoptions.strMeal);
 					const recipeLinkDiv = $('<div>').addClass('card-action');
-					const addLinkButton = $('<a>').attr('href', mealLink).attr('target', '_blank').text('View Recipe');
+					const addLinkButton = $('<a>').attr('href', mealLink).attr('target', '_blank').text('View Recipe'); //link to external website with recipe.  Tried for the website link, youtube link, then a google search.
 
 					optionsTextDiv.append(optionsMealName);
 					addButton.append(addIcon);
@@ -161,7 +177,7 @@ $(document).ready(function () {
 
 	// ******** for testing only ********* DELETE when done testing
 	showSearchBtn.on('click', function () {
-		optionsContainer.empty();
+		// optionsContainer.empty();
 		searchDiv.removeClass('hide');
 		pastDiv.addClass('hide');
 		gameDiv.addClass('hide');
