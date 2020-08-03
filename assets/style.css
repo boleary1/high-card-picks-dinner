@@ -1,3 +1,5 @@
+/* App styles */
+
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
 body {
@@ -5,9 +7,12 @@ body {
 	background: radial-gradient(circle, rgba(46, 179, 72, 1) 28%, rgba(37, 111, 45, 1) 67%);
 }
 
+/* Navigation */
+
 nav {
 	margin-bottom: 20px;
 }
+
 
 div.start,
 div.search {
@@ -15,10 +20,11 @@ div.search {
 	justify-content: center;
 }
 
+/* Game styles */
+
 header .brand-logo {
 	font-family: Staatliches, sans-serif;
 }
-
 
 h2.player {
 	font-size: 2rem;
@@ -33,6 +39,18 @@ div.modal h3 {
 	padding: 5px;
 }
 
+/* Recipe search and past meals styles */
+
+h2.search-heading,
+h2.past-meals-heading {
+	font-size: 1.8rem;
+}
+
+p.card-title {
+	font-size: 1.2rem !important;
+	line-height: 1.4rem !important;
+}
+
 div.search form {
 	width: 50%;
 }
@@ -43,7 +61,7 @@ div.card {
 
 @media (max-width: 992px) {
 	div.card {
-		height: 630px;
+		height: 600px;
 	}
 }
 

@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Materialize Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="./assets/style.css">
     <title>High Card Picks Dinner</title>
 
@@ -21,7 +23,7 @@
                 <ul class="left hide-on-med-and-down">
                     <li><a class="home-link" href="#">Home</a></li>
                     <li><a class="past-link" href="#">Past Meals</a></li>
-                    <!-- This button is used for testing the hide/show function so we can go from game to api search to past meals list -->
+                    <!-- This button is used for testing - delete when done testing -->
                     <li><a class="search-link" data-target="search-modal" href="#search-modal">Meal Search</a></li>
 
                 </ul>
@@ -30,6 +32,7 @@
         <ul class="sidenav" id="mobile-demo">
             <li><a class="home-link" href="#">Home</a></li>
             <li><a class="past-link" href="#">Past Meals</a></li>
+            <!-- This button is used for testing - delete when done testing -->
             <li><a class="search-link" data-target="search-modal" href="#search-modal">Meal Search</a></li>
         </ul>
     </header>
@@ -42,7 +45,7 @@
             <div class="start">
                 <i class="medium material-icons left white-text">local_dining</i>
                 <button id="start-btn" class="btn-large green darken-2 center-align hoverable modal-trigger"
-                    data-target="start-modal">Start New Game</button>
+                    data-target="start-modal">Start</button>
                 <i class="medium material-icons right white-text">local_dining</i>
             </div>
 
@@ -84,7 +87,7 @@
                     point. No points are awarded for ties. The first person
                     to 5 points wins and gets to search and choose a meal – dinner plans solved!</p>
                 <div class="row">
-                    <form class="col s12">
+                    <form id="playerNames" class="col s12">
                         <div class="row">
                             <div class="input-field col s12">
                                 <input id="p1-name-input" type="text" class="validate">
@@ -110,7 +113,7 @@
         <div id="search-div" class="container hide">
 
             <div class="row white-text">
-                <h2 class="center-align"><span id="winner-name">Brian</span> Picks Dinner!</h2>
+                <h2 class="center-align search-heading"><span id="winner-name">Brian</span> Picks Dinner!</h2>
             </div>
 
             <div class="row green lighten-5 z-depth-3">
@@ -150,6 +153,7 @@
                 </div>
             </div>
 
+            <!-- Name picker for search - delete after testing -->
             <div id="search-modal" class="modal">
                 <div class="modal-content">
                     <h3 class="center-align green darken-4 white-text">Who Picks Dinner?</h3>
@@ -171,6 +175,7 @@
                 </div>
 
             </div>
+            <!-- End search name picker -->
 
         </div>
 
@@ -182,8 +187,8 @@
         <div id="past-div" class="container hide">
 
             <div class="row white-text">
-                <h2 class="center-align">Past Meals</h2>
-                <button id="winners-circle-btn" class="btn-large green darken-2 hoverable">View Winners Circle</button>
+                <h2 class="center-align past-meals-heading">Past Meals</h2>
+                <button id="winners-circle-btn" class="btn green darken-2 hoverable">View Winners Circle</button>
 
             </div>
 
@@ -207,7 +212,7 @@
 
         </div>
 
-        <!-- End Saved Meal Section -->
+        <!-- End Past Meal Section -->
 
 
 
