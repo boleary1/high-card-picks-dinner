@@ -7,6 +7,9 @@ $(document).ready(function () {
 	const pastDiv = $('div#past-div');
 	const winnerNameEl = $('span#winner-name');
 	const historyContainer = $('#past-recipe-cards');
+	const pickerName = $('#picker-name');
+	const pickerNameBtn = $('#picker-name-submit');
+	const winnersCircleBtn = $('#winners-circle-btn');
 	// Selectors for nav buttons
 	const homeBtn = $('a.home-link');
 	const pastBtn = $('a.past-link');
@@ -23,19 +26,12 @@ $(document).ready(function () {
 
 	// ******************** Put Game Code Here **********************
 
-	let winnerName = 'The Chef';
-	pickedMeal.Name = winnerName;
+	let winnerName = '';
+
 
 	// *********** Game code above **********************
 
-	// ******** for testing only ********* DELETE when done testing
-	showSearchBtn.on('click', function () {
-		searchDiv.removeClass('hide');
-		pastDiv.addClass('hide');
-		gameDiv.addClass('hide');
-		winnerName = 'The Chef';
-		winnerNameEl.text(winnerName);
-	});
+
 
 	// Search button event handler
 
@@ -175,13 +171,30 @@ $(document).ready(function () {
 		gameDiv.addClass('hide');
 	});
 
-	// ******** for testing only ********* DELETE when done testing
+	// Search Meals Button - Keep or not?
+
 	showSearchBtn.on('click', function () {
-		// optionsContainer.empty();
 		searchDiv.removeClass('hide');
 		pastDiv.addClass('hide');
 		gameDiv.addClass('hide');
+		$('#search-modal').modal('open');
+		// winnerName = 'The Chef';
+		// winnerNameEl.text(winnerName);
 	});
+
+	pickerNameBtn.on("click", function () {
+		winnerName = pickerName.val();
+		console.log(pickerName);
+		console.log(pickerName.val());
+		winnerNameEl.text(winnerName);
+		pickerName.val('');
+	});
+
+	winnersCircleBtn.on('click', function () {
+		generateChart();
+		$('#winners-modal').modal('open');
+	})
+
 
 	// Pick Recipe Button event handler
 
@@ -190,6 +203,7 @@ $(document).ready(function () {
 		pickedMeal.Date = moment().format('L');
 		pickedMeal.Meal = $(this).parent().siblings().children()[0].outerText;
 		pickedMeal.RecipeLink = $(this).parent().siblings().children()[1].href;
+		pickedMeal.Name = winnerName;
 		getHistory();
 		saveMeal(pickedMeal);
 		populateHistory();
@@ -213,53 +227,60 @@ $(document).ready(function () {
 	// Chart stuff
 	const ctx = document.getElementById('past-winners-chart').getContext('2d');
 
-	//Creates an array of all the names from the historyData (stored in mem)
-	let names = [];
-	historyData.forEach(function (obj) {
-		names.push(obj.Name)
-	});
+	function generateChart() {
 
-	// Takes an array of the winners, and puts the name of each winner in the object once as well as how many times they've won
-	function howManyWins(array) {
-		let winCounts = {}
-		array.forEach(function (name) {
-			winCounts[name] = (winCounts[name] || 0) + 1;
-			console.log(winCounts);
+
+		//Creates an array of all the names from the historyData (stored in mem)
+		let names = [];
+		historyData.forEach(function (obj) {
+			names.push(obj.Name)
 		});
-		return winCounts;
-	}
 
-	//Data for chart would come from historyData
-	// Labels: names, data would be the number of times a name was in the dataHistory
-	// store in an object
-	let historyChart = howManyWins(names);  // Format: {name: wins}
-	console.log(names);
-	console.log(historyChart);
+		// Takes an array of the winners, and puts the name of each winner in the object once as well as how many times they've won
+		function howManyWins(array) {
+			let winCounts = {}
+			array.forEach(function (name) {
+				winCounts[name] = (winCounts[name] || 0) + 1;
+				console.log(winCounts);
+			});
+			return winCounts;
+		}
 
-	// Chart settings
-	var chart = new Chart(ctx, {
-		// The type of chart we want to create
-		type: 'doughnut',
+		//Data for chart would come from historyData
+		// Labels: names, data would be the number of times a name was in the dataHistory
+		// store in an object
+		let historyChart = howManyWins(names);  // Format: {name: wins}
+		console.log(names);
+		console.log(historyChart);
 
-		// The data for our dataset
-		data: {
-			labels: Object.keys(historyChart),  //['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-			datasets: [{
-				label: 'Wins',
-				backgroundColor: ['blue', 'yellow'],
-				borderColor: 'rgb(255, 99, 132)',
-				data: Object.values(historyChart)   //[0, 10, 5, 2, 20, 30, 45]
-			}]
-		},
+		// Chart settings
+		var chart = new Chart(ctx, {
+			// The type of chart we want to create
+			type: 'doughnut',
 
-		// Configuration options go here
-		options: {
-			legend: {
-				labels: {
-					// This more specific font property overrides the global property
-					fontColor: 'black'
+			// The data for our dataset
+			data: {
+				labels: Object.keys(historyChart),  //['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+				datasets: [{
+					label: 'Wins',
+					backgroundColor: ['green', 'yellow', 'indianred', 'lightgreen'],
+					borderColor: 'orange',
+					// borderColor: 'rgb(255, 99, 132)',
+					data: Object.values(historyChart)   //[0, 10, 5, 2, 20, 30, 45]
+				}]
+			},
+
+			// Configuration options go here
+			options: {
+				legend: {
+					labels: {
+						// This more specific font property overrides the global property
+						fontColor: 'black'
+					}
 				}
 			}
-		}
-	});
+		});
+	}
+
+
 });

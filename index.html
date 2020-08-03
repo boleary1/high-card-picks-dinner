@@ -22,7 +22,7 @@
                     <li><a class="home-link" href="#">Home</a></li>
                     <li><a class="past-link" href="#">Past Meals</a></li>
                     <!-- This button is used for testing the hide/show function so we can go from game to api search to past meals list -->
-                    <li><a class="search-link" href="#">Meal Search</a></li>
+                    <li><a class="search-link" data-target="search-modal" href="#search-modal">Meal Search</a></li>
 
                 </ul>
             </div>
@@ -30,7 +30,7 @@
         <ul class="sidenav" id="mobile-demo">
             <li><a class="home-link" href="#">Home</a></li>
             <li><a class="past-link" href="#">Past Meals</a></li>
-            <li><a class="search-link" href="#">Meal Search</a></li>
+            <li><a class="search-link" data-target="search-modal" href="#search-modal">Meal Search</a></li>
         </ul>
     </header>
 
@@ -143,6 +143,28 @@
                 </div>
             </div>
 
+            <div id="search-modal" class="modal">
+                <div class="modal-content">
+                    <h3 class="center-align green darken-4 white-text">Who Picks Dinner?</h3>
+
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="picker-name" type="text" class="validate">
+                                    <label for="picker-name">Name</label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="picker-name-submit"
+                                    class="modal-close waves-effect waves-green btn-flat">Ok</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
 
         <!-- End Meal Search Section -->
@@ -154,10 +176,32 @@
 
             <div class="row white-text">
                 <h2 class="center-align">Past Meals</h2>
+                <button id="winners-circle-btn" class="btn-large green darken-2 hoverable">View Winners Circle</button>
+
             </div>
 
             <!-- Chart using chart.js -->
-            <canvas id="past-winners-chart" width="" height="" aria-label="Pie Chart: Past Winners" role="img"></canvas>
+            <div id="winners-modal" class="modal">
+                <div class="modal-content">
+                    <h4>Winners Circle</h4>
+                    <canvas id="past-winners-chart" width="" height="" aria-label="Pie Chart: Past Winners"
+                        role="img"></canvas>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Return to Past Meals</a>
+                </div>
+            </div>
+            <!-- <div class="row winners-circle">
+                <div class="col s6">
+                    <h3>Winner's Circle</h3>
+                </div>
+                <div class="col s6">
+                    <canvas id="past-winners-chart" width="" height="" aria-label="Pie Chart: Past Winners"
+                        role="img"></canvas>
+                </div>
+
+            </div>
+            <canvas id="past-winners-chart" width="" height="" aria-label="Pie Chart: Past Winners" role="img"></canvas> -->
 
 
             <div id="past-recipe-cards" class="row">
