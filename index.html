@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Materialize Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <!-- Custom Styles -->
     <link rel="stylesheet" href="./assets/style.css">
     <title>High Card Picks Dinner</title>
@@ -44,7 +46,8 @@
         <div id="game-div" class="container">
             <div class="start">
                 <i class="medium material-icons left white-text">local_dining</i>
-                <button id="start-btn" class="btn-large green darken-2 center-align hoverable modal-trigger"
+                <button id="start-btn"
+                    class="btn-large green darken-2 center-align hoverable modal-trigger animate__animated animate__bounceInDown"
                     data-target="start-modal">Start</button>
                 <i class="medium material-icons right white-text">local_dining</i>
             </div>
@@ -188,7 +191,9 @@
 
             <div class="row white-text">
                 <h2 class="center-align past-meals-heading">Past Meals</h2>
-                <button id="winners-circle-btn" class="btn green darken-2 hoverable">View Winners Circle</button>
+                <button id="winners-circle-btn"
+                    class="btn green darken-2 hoverable animate__animated animate__jackInTheBox">View Winners
+                    Circle</button>
 
             </div>
 
