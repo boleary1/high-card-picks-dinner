@@ -171,7 +171,6 @@ $(document).ready(function () {
 			let winCounts = {}
 			array.forEach(function (name) {
 				winCounts[name] = (winCounts[name] || 0) + 1;
-				console.log(winCounts);
 			});
 			return winCounts;
 		}
@@ -180,8 +179,6 @@ $(document).ready(function () {
 		// Labels: names, data would be the number of times a name was in the dataHistory
 		// store in an object
 		let historyChart = howManyWins(names);  // Format: {name: wins}
-		console.log(names);
-		console.log(historyChart);
 
 		// Chart settings
 		var chart = new Chart(ctx, {
@@ -246,8 +243,6 @@ $(document).ready(function () {
 
 	pickerNameBtn.on("click", function () {
 		winnerName = pickerName.val();
-		console.log(pickerName);
-		console.log(pickerName.val());
 		winnerNameEl.text(winnerName);
 		pickerName.val('');
 	});
