@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
 	// Selectors for main divs - game, recipe search, meal history
 	const gameDiv = $('div#game-div');
 	const startBtn = $('button#start-btn');
@@ -10,6 +11,7 @@ $(document).ready(function () {
 	const pickerName = $('#picker-name');
 	const pickerNameBtn = $('#picker-name-submit');
 	const winnersCircleBtn = $('#winners-circle-btn');
+
 	// Selectors for nav buttons
 	const homeBtn = $('a.home-link');
 	const pastBtn = $('a.past-link');
@@ -29,6 +31,9 @@ $(document).ready(function () {
 	let winnerName = '';
 
 
+
+
+
 	// *********** Game code above **********************
 
 
@@ -36,8 +41,6 @@ $(document).ready(function () {
 	// Search button event handler
 
 	let selectedCategory;
-
-
 
 	$('#search-btn').on('click', function () {
 		event.preventDefault();
@@ -103,7 +106,7 @@ $(document).ready(function () {
 		});
 	});
 
-	// Meal history code starts here, including save function
+	// ******** Meal history code starts here, including save function ********
 
 	// Gets info from local storage and stores it in the historyData variable if there is any available.
 	function getHistory() {
@@ -151,84 +154,11 @@ $(document).ready(function () {
 		localStorage.setItem('historyKEY', JSON.stringify(historyData));
 	};
 
-	// Nav buttons
+	// ****** Chart stuff starts here ********
 
-	// Home Button
-
-	homeBtn.on('click', function () {
-		gameDiv.removeClass('hide');
-		searchDiv.addClass('hide');
-		pastDiv.addClass('hide');
-	});
-
-	// Past Meals button
-
-	pastBtn.on('click', function () {
-		getHistory();
-		populateHistory();
-		pastDiv.removeClass('hide');
-		searchDiv.addClass('hide');
-		gameDiv.addClass('hide');
-	});
-
-	// Search Meals Button - Keep or not?
-
-	showSearchBtn.on('click', function () {
-		searchDiv.removeClass('hide');
-		pastDiv.addClass('hide');
-		gameDiv.addClass('hide');
-		$('#search-modal').modal('open');
-		// winnerName = 'The Chef';
-		// winnerNameEl.text(winnerName);
-	});
-
-	pickerNameBtn.on("click", function () {
-		winnerName = pickerName.val();
-		console.log(pickerName);
-		console.log(pickerName.val());
-		winnerNameEl.text(winnerName);
-		pickerName.val('');
-	});
-
-	winnersCircleBtn.on('click', function () {
-		generateChart();
-		$('#winners-modal').modal('open');
-	})
-
-
-	// Pick Recipe Button event handler
-
-	optionsContainer.on('click', 'a.pick-recipe-btn', function (event) {
-		pickedMeal.ImgURL = $(this).siblings()[0].src;
-		pickedMeal.Date = moment().format('L');
-		pickedMeal.Meal = $(this).parent().siblings().children()[0].outerText;
-		pickedMeal.RecipeLink = $(this).parent().siblings().children()[1].href;
-		pickedMeal.Name = winnerName;
-		getHistory();
-		saveMeal(pickedMeal);
-		populateHistory();
-		pastDiv.removeClass('hide');
-		searchDiv.addClass('hide');
-		gameDiv.addClass('hide');
-	});
-	getHistory();
-
-	// Materialize JavaScript Initializations
-
-	// Materialize Side Nav Menu for Mobile
-	$('.sidenav').sidenav();
-
-	// Materialize Initialization for Modal
-	$('.modal').modal();
-
-	// Materialize Initialization for Select
-	$('select').formSelect();
-
-	// Chart stuff
 	const ctx = document.getElementById('past-winners-chart').getContext('2d');
 
 	function generateChart() {
-
 
 		//Creates an array of all the names from the historyData (stored in mem)
 		let names = [];
@@ -241,7 +171,6 @@ $(document).ready(function () {
 			let winCounts = {}
 			array.forEach(function (name) {
 				winCounts[name] = (winCounts[name] || 0) + 1;
-				console.log(winCounts);
 			});
 			return winCounts;
 		}
@@ -250,8 +179,6 @@ $(document).ready(function () {
 		// Labels: names, data would be the number of times a name was in the dataHistory
 		// store in an object
 		let historyChart = howManyWins(names);  // Format: {name: wins}
-		console.log(names);
-		console.log(historyChart);
 
 		// Chart settings
 		var chart = new Chart(ctx, {
@@ -281,6 +208,82 @@ $(document).ready(function () {
 			}
 		});
 	}
+
+
+	// ****** Nav button click handlers start here ******
+
+	// Home Button
+
+	homeBtn.on('click', function () {
+		gameDiv.removeClass('hide');
+		searchDiv.addClass('hide');
+		pastDiv.addClass('hide');
+	});
+
+	// Past Meals button
+
+	pastBtn.on('click', function () {
+		getHistory();
+		populateHistory();
+		pastDiv.removeClass('hide');
+		searchDiv.addClass('hide');
+		gameDiv.addClass('hide');
+	});
+
+	// Search Meals Button - Keep or not after game is done?
+
+	showSearchBtn.on('click', function () {
+		searchDiv.removeClass('hide');
+		pastDiv.addClass('hide');
+		gameDiv.addClass('hide');
+		$('#search-modal').modal('open');
+	});
+
+	// Name Picker in Modal OK Button - Keep or not after game is done?
+
+	pickerNameBtn.on("click", function () {
+		winnerName = pickerName.val();
+		winnerNameEl.text(winnerName);
+		pickerName.val('');
+	});
+
+	winnersCircleBtn.on('click', function () {
+		generateChart();
+		$('#winners-modal').modal('open');
+	})
+
+
+	// Pick Recipe Button event handler
+
+	optionsContainer.on('click', 'a.pick-recipe-btn', function (event) {
+		pickedMeal.ImgURL = $(this).siblings()[0].src;
+		pickedMeal.Date = moment().format('L');
+		pickedMeal.Meal = $(this).parent().siblings().children()[0].outerText;
+		pickedMeal.RecipeLink = $(this).parent().siblings().children()[1].href;
+		pickedMeal.Name = winnerName;
+		getHistory();
+		saveMeal(pickedMeal);
+		populateHistory();
+		pastDiv.removeClass('hide');
+		searchDiv.addClass('hide');
+		gameDiv.addClass('hide');
+	});
+
+	// ******* Initialize App Section *********
+
+	getHistory();
+
+	// Materialize JavaScript Initializations
+
+	// Materialize Side Nav Menu for Mobile
+	$('.sidenav').sidenav();
+
+	// Materialize Initialization for Modal
+	$('.modal').modal();
+
+	// Materialize Initialization for Select
+	$('select').formSelect();
+
 
 
 });
