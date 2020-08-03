@@ -7,6 +7,8 @@ $(document).ready(function () {
 	const pastDiv = $('div#past-div');
 	const winnerNameEl = $('span#winner-name');
 	const historyContainer = $('#past-recipe-cards');
+	const pickerName = $('#picker-name');
+	const pickerNameBtn = $('#picker-name-submit');
 	// Selectors for nav buttons
 	const homeBtn = $('a.home-link');
 	const pastBtn = $('a.past-link');
@@ -23,19 +25,12 @@ $(document).ready(function () {
 
 	// ******************** Put Game Code Here **********************
 
-	let winnerName = 'The Chef';
-	pickedMeal.Name = winnerName;
+	let winnerName = '';
+
 
 	// *********** Game code above **********************
 
-	// ******** for testing only ********* DELETE when done testing
-	showSearchBtn.on('click', function () {
-		searchDiv.removeClass('hide');
-		pastDiv.addClass('hide');
-		gameDiv.addClass('hide');
-		winnerName = 'The Chef';
-		winnerNameEl.text(winnerName);
-	});
+
 
 	// Search button event handler
 
@@ -175,13 +170,25 @@ $(document).ready(function () {
 		gameDiv.addClass('hide');
 	});
 
-	// ******** for testing only ********* DELETE when done testing
+	// Search Meals Button - Keep or not?
+
 	showSearchBtn.on('click', function () {
-		// optionsContainer.empty();
 		searchDiv.removeClass('hide');
 		pastDiv.addClass('hide');
 		gameDiv.addClass('hide');
+		$('#search-modal').modal('open');
+		// winnerName = 'The Chef';
+		// winnerNameEl.text(winnerName);
 	});
+
+	pickerNameBtn.on("click", function () {
+		winnerName = pickerName.val();
+		console.log(pickerName);
+		console.log(pickerName.val());
+		winnerNameEl.text(winnerName);
+		pickerName.val('');
+	});
+
 
 	// Pick Recipe Button event handler
 
@@ -190,6 +197,7 @@ $(document).ready(function () {
 		pickedMeal.Date = moment().format('L');
 		pickedMeal.Meal = $(this).parent().siblings().children()[0].outerText;
 		pickedMeal.RecipeLink = $(this).parent().siblings().children()[1].href;
+		pickedMeal.Name = winnerName;
 		getHistory();
 		saveMeal(pickedMeal);
 		populateHistory();
@@ -246,7 +254,7 @@ $(document).ready(function () {
 			labels: Object.keys(historyChart),  //['January', 'February', 'March', 'April', 'May', 'June', 'July'],
 			datasets: [{
 				label: 'Wins',
-				backgroundColor: ['green', 'yellow'],
+				backgroundColor: ['green', 'yellow', 'indianred', 'lightgreen'],
 				borderColor: 'orange',
 				// borderColor: 'rgb(255, 99, 132)',
 				data: Object.values(historyChart)   //[0, 10, 5, 2, 20, 30, 45]
