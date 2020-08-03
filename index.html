@@ -163,10 +163,23 @@
 
             <div class="row white-text">
                 <h2 class="center-align">Past Meals</h2>
+                <button id="start-btn" class="btn-large green darken-2 hoverable modal-trigger"
+                    data-target="winners-modal">View Winners Circle</button>
+
             </div>
 
             <!-- Chart using chart.js -->
-            <div class="row winners-circle">
+            <div id="winners-modal" class="modal">
+                <div class="modal-content">
+                    <h4>Winners Circle</h4>
+                    <canvas id="past-winners-chart" width="" height="" aria-label="Pie Chart: Past Winners"
+                        role="img"></canvas>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Return to Past Meals</a>
+                </div>
+            </div>
+            <!-- <div class="row winners-circle">
                 <div class="col s6">
                     <h3>Winner's Circle</h3>
                 </div>
@@ -176,7 +189,7 @@
                 </div>
 
             </div>
-            <canvas id="past-winners-chart" width="" height="" aria-label="Pie Chart: Past Winners" role="img"></canvas>
+            <canvas id="past-winners-chart" width="" height="" aria-label="Pie Chart: Past Winners" role="img"></canvas> -->
 
 
             <div id="past-recipe-cards" class="row">

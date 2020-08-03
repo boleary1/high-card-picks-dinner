@@ -246,8 +246,9 @@ $(document).ready(function () {
 			labels: Object.keys(historyChart),  //['January', 'February', 'March', 'April', 'May', 'June', 'July'],
 			datasets: [{
 				label: 'Wins',
-				backgroundColor: ['blue', 'yellow'],
-				borderColor: 'rgb(255, 99, 132)',
+				backgroundColor: ['green', 'yellow'],
+				borderColor: 'orange',
+				// borderColor: 'rgb(255, 99, 132)',
 				data: Object.values(historyChart)   //[0, 10, 5, 2, 20, 30, 45]
 			}]
 		},
