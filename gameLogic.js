@@ -4,9 +4,9 @@ let newDeck = [];
 let gameCards = [];
 let p1Card = [];
 let p2Card = [];
+let score = [];
 let score1 = 0;
 let score2 = 0;
-let score = [];
 
 
 
@@ -48,8 +48,19 @@ $('#deal-btn').click(function() {
             p2Card.length = 0
             p2Card.push(newDeck[1])
 
-            console.log(p1Card.suit)
-            $("#p1-card").attr("src", p1Card.image);
-        })
+            console.log(newDeck)
 
+            $("#p1-card").attr("src", p1Card[0].image);
+            $("#p2-card").attr("src", p2Card[0].image);
+
+            if (p1Card[0].value > p2Card[0].value) {
+                score1++;
+            } else(p1Card[0].value < p2Card[0].value); {
+                score2++;
+            }
+
+            $("#p1-score").html(score1.toString());
+            $("#p2-score").html(score2.toString());
+
+        })
 })
