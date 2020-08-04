@@ -13,7 +13,6 @@ nav {
 	margin-bottom: 20px;
 }
 
-
 div.start,
 div.search {
 	display: flex;
@@ -35,10 +34,14 @@ p.score {
 }
 
 div.modal h3 {
+	font-family: Staatliches, sans-serif;
 	font-size: 1.7rem;
 	padding: 5px;
 }
 
+div#won-modal {
+	font-family: Staatliches, sans-serif;
+}
 
 /* Recipe search and past meals styles */
 
@@ -70,7 +73,6 @@ div.card {
 	.nav-wrapper .brand-logo {
 		font-size: 1rem;
 	}
-
 }
 
 div .winners-circle {
