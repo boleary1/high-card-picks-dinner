@@ -260,6 +260,7 @@ $(document).ready(function () {
 		pickedMeal.Date = moment().format('L');
 		pickedMeal.Meal = $(this).parent().siblings().children()[0].outerText;
 		pickedMeal.RecipeLink = $(this).parent().siblings().children()[1].href;
+		console.log(winnerName);
 		pickedMeal.Name = winnerName;
 		getHistory();
 		saveMeal(pickedMeal);
