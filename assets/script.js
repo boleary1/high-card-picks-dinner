@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
 	// Selectors for main divs - game, recipe search, meal history
 	const gameDiv = $('div#game-div');
 	const startBtn = $('button#start-btn');
@@ -10,6 +11,7 @@ $(document).ready(function () {
 	const pickerName = $('#picker-name');
 	const pickerNameBtn = $('#picker-name-submit');
 	const winnersCircleBtn = $('#winners-circle-btn');
+
 	// Selectors for nav buttons
 	const homeBtn = $('a.home-link');
 	const pastBtn = $('a.past-link');
@@ -29,6 +31,9 @@ $(document).ready(function () {
 	let winnerName = '';
 
 
+
+
+
 	// *********** Game code above **********************
 
 
@@ -36,8 +41,6 @@ $(document).ready(function () {
 	// Search button event handler
 
 	let selectedCategory;
-
-
 
 	$('#search-btn').on('click', function () {
 		event.preventDefault();
@@ -103,7 +106,7 @@ $(document).ready(function () {
 		});
 	});
 
-	// Meal history code starts here, including save function
+	// ******** Meal history code starts here, including save function ********
 
 	// Gets info from local storage and stores it in the historyData variable if there is any available.
 	function getHistory() {
@@ -151,7 +154,62 @@ $(document).ready(function () {
 		localStorage.setItem('historyKEY', JSON.stringify(historyData));
 	};
 
-	// Nav buttons
+	// ****** Chart stuff starts here ********
+
+	const ctx = document.getElementById('past-winners-chart').getContext('2d');
+
+	function generateChart() {
+
+		//Creates an array of all the names from the historyData (stored in mem)
+		let names = [];
+		historyData.forEach(function (obj) {
+			names.push(obj.Name)
+		});
+
+		// Takes an array of the winners, and puts the name of each winner in the object once as well as how many times they've won
+		function howManyWins(array) {
+			let winCounts = {}
+			array.forEach(function (name) {
+				winCounts[name] = (winCounts[name] || 0) + 1;
+			});
+			return winCounts;
+		}
+
+		//Data for chart would come from historyData
+		// Labels: names, data would be the number of times a name was in the dataHistory
+		// store in an object
+		let historyChart = howManyWins(names);  // Format: {name: wins}
+
+		// Chart settings
+		var chart = new Chart(ctx, {
+			// The type of chart we want to create
+			type: 'doughnut',
+
+			// The data for our dataset
+			data: {
+				labels: Object.keys(historyChart),
+				datasets: [{
+					label: 'Wins',
+					backgroundColor: ['#005800', '#FBBC0D', '#D30206', '#D85701', '#321372', '#446C60', 'hex(192C37)'],
+					borderColor: 'black',
+					data: Object.values(historyChart)   //[0, 10, 5, 2, 20, 30, 45]
+				}]
+			},
+
+			// Configuration options go here
+			options: {
+				legend: {
+					labels: {
+						// This more specific font property overrides the global property
+						fontColor: 'black'
+					}
+				}
+			}
+		});
+	}
+
+
+	// ****** Nav button click handlers start here ******
 
 	// Home Button
 
@@ -171,21 +229,19 @@ $(document).ready(function () {
 		gameDiv.addClass('hide');
 	});
 
-	// Search Meals Button - Keep or not?
+	// Search Meals Button - Keep or not after game is done?
 
 	showSearchBtn.on('click', function () {
 		searchDiv.removeClass('hide');
 		pastDiv.addClass('hide');
 		gameDiv.addClass('hide');
 		$('#search-modal').modal('open');
-		// winnerName = 'The Chef';
-		// winnerNameEl.text(winnerName);
 	});
+
+	// Name Picker in Modal OK Button - Keep or not after game is done?
 
 	pickerNameBtn.on("click", function () {
 		winnerName = pickerName.val();
-		console.log(pickerName);
-		console.log(pickerName.val());
 		winnerNameEl.text(winnerName);
 		pickerName.val('');
 	});
@@ -211,6 +267,9 @@ $(document).ready(function () {
 		searchDiv.addClass('hide');
 		gameDiv.addClass('hide');
 	});
+
+	// ******* Initialize App Section *********
+
 	getHistory();
 
 	// Materialize JavaScript Initializations
@@ -223,64 +282,6 @@ $(document).ready(function () {
 
 	// Materialize Initialization for Select
 	$('select').formSelect();
-
-	// Chart stuff
-	const ctx = document.getElementById('past-winners-chart').getContext('2d');
-
-	function generateChart() {
-
-
-		//Creates an array of all the names from the historyData (stored in mem)
-		let names = [];
-		historyData.forEach(function (obj) {
-			names.push(obj.Name)
-		});
-
-		// Takes an array of the winners, and puts the name of each winner in the object once as well as how many times they've won
-		function howManyWins(array) {
-			let winCounts = {}
-			array.forEach(function (name) {
-				winCounts[name] = (winCounts[name] || 0) + 1;
-				console.log(winCounts);
-			});
-			return winCounts;
-		}
-
-		//Data for chart would come from historyData
-		// Labels: names, data would be the number of times a name was in the dataHistory
-		// store in an object
-		let historyChart = howManyWins(names);  // Format: {name: wins}
-		console.log(names);
-		console.log(historyChart);
-
-		// Chart settings
-		var chart = new Chart(ctx, {
-			// The type of chart we want to create
-			type: 'doughnut',
-
-			//The data for our dataset
-			data: {
-				labels: Object.keys(historyChart),
-				datasets: [{
-					label: 'Wins',
-					backgroundColor: ['#005800', '#FBBC0D', '#D30206', '#D85701', '#321372', '#446C60', 'hex(192C37)'],
-					borderColor: 'orange',
-					borderColor: 'black',
-					data: Object.values(historyChart)   //[0, 10, 5, 2, 20, 30, 45]
-				}]
-			},
-
-			// Configuration options go here
-			options: {
-				legend: {
-					labels: {
-						// This more specific font property overrides the global property
-						fontColor: 'black'
-					}
-				}
-			}
-		});
-	}
 
 
 });
