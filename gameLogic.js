@@ -1,5 +1,5 @@
 $(document).ready()
-    //array of drawn cards for each match, draw all 52 then choose from array to avoid multiple api calls?
+//array of drawn cards for each match, draw all 52 then choose from array to avoid multiple api calls?
 let newDeck = [];
 let p1Card = [];
 let p2Card = [];
@@ -11,21 +11,21 @@ const p2NameEl = $('#p2-name-input');
 //let winnerName
 let p1Name
 let p2Name
-$('#submit-start').click(function() {
+$('#submit-start').click(function () {
     p1Name = p1NameEl.val()
     p2Name = p2NameEl.val()
     $('#p1-name').html(p1Name);
     $('#p2-name').html(p2Name);
 
 })
-$('#deal-btn').click(function() {
+$('#deal-btn').click(function () {
 
 
     $.ajax({
-            url: "https://deckofcardsapi.com/api/deck/new/draw/?count=52",
-            method: "GET"
-        })
-        .then(function(response) {
+        url: "https://deckofcardsapi.com/api/deck/new/draw/?count=52",
+        method: "GET"
+    })
+        .then(function (response) {
             console.log(response)
 
             let newDeck = response.cards;
@@ -80,6 +80,8 @@ $('#deal-btn').click(function() {
                 $('#search-div').removeClass('hide');
                 $('#game-div').addClass('hide');
                 $('#winner-name').text(winnerName);
+                $('#winner-modal-display').text(winnerName);
+                $('#won-modal').modal('open');
             }
 
         })

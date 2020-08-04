@@ -65,8 +65,8 @@ $(document).ready(function () {
 					method: 'GET'
 				}).then(function (mealDisplay) {
 					if (mealDisplay.meals[0].strSource == "" || mealDisplay.meals[0].strSource == null) { //checks if the recipe link is invalid
-						if (mealDisplay.meals[0].strYoutube == "" || mealDisplay.meals[0].strYoutube == null) { //if the youtube link is invalid it completes a google search
-							const str = ((mealDisplay.meals[0].strMeal).split(' ').join('+')); //gets the string ready for google search
+						if (mealDisplay.meals[0].strYoutube == "" || mealDisplay.meals[0].strYoutube == null) { //if the recipe link isn't valid,  check for a youtube link
+							const str = ((mealDisplay.meals[0].strMeal).split(' ').join('+')); // if there is no recipe link or youtube link, then google the recipe name.  
 							mealLink = ("https://www.google.com/search?q=" + str); //writes URL
 						}
 						else {
@@ -77,7 +77,7 @@ $(document).ready(function () {
 						mealLink = mealDisplay.meals[0].strSource; //displays recipe link
 					}
 
-
+					//********************declaring variables to help write the cards *****************************
 					const optionsDiv = $('<div>').addClass('options col s12 m6 l3');
 					const optionsCard = $('<div>').addClass('card');
 					const optionsCardImgDiv = $('<div>').addClass('card-image');
@@ -93,7 +93,7 @@ $(document).ready(function () {
 					const optionsMealName = $('<span>').addClass('meal-name card-title').text(displayoptions.strMeal);
 					const recipeLinkDiv = $('<div>').addClass('card-action');
 					const addLinkButton = $('<a>').attr('href', mealLink).attr('target', '_blank').text('View Recipe'); //link to external website with recipe.  Tried for the website link, youtube link, then a google search.
-
+					//*************dynamically creating cards for meal options *************
 					optionsTextDiv.append(optionsMealName);
 					addButton.append(addIcon);
 					optionsCardImgDiv.append(optionsImg, addButton);
@@ -129,7 +129,7 @@ $(document).ready(function () {
 				const date = $('<p>').addClass('past-date').text(object.Date);
 				const linkDiv = $('<div>').addClass('card-action');
 				const pastRecipeLink = $('<a>').addClass('past-recipe-link').attr('href', object.RecipeLink).attr('target', '_blank').text('View Recipe');
-
+				//******************* */ dynamically create cards for the meal history.**********************
 				whoPickedPara.append(pickedBySpan);
 				cardContentDiv.append(mealName, whoPickedPara, date);
 				cardImgDiv.append(img);
@@ -259,6 +259,7 @@ $(document).ready(function () {
 		pickedMeal.Date = moment().format('L');
 		pickedMeal.Meal = $(this).parent().siblings().children()[0].outerText;
 		pickedMeal.RecipeLink = $(this).parent().siblings().children()[1].href;
+		console.log(winnerName);
 		pickedMeal.Name = winnerName;
 		getHistory();
 		saveMeal(pickedMeal);
