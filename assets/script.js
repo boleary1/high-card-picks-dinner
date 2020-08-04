@@ -187,12 +187,11 @@ $(document).ready(function () {
 
 			// The data for our dataset
 			data: {
-				labels: Object.keys(historyChart),  //['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+				labels: Object.keys(historyChart),
 				datasets: [{
 					label: 'Wins',
-					backgroundColor: ['green', 'yellow', 'indianred', 'lightgreen'],
-					borderColor: 'orange',
-					// borderColor: 'rgb(255, 99, 132)',
+					backgroundColor: ['#005800', '#FBBC0D', '#D30206', '#D85701', '#321372', '#446C60', 'hex(192C37)'],
+					borderColor: 'black',
 					data: Object.values(historyChart)   //[0, 10, 5, 2, 20, 30, 45]
 				}]
 			},
@@ -284,7 +283,6 @@ $(document).ready(function () {
 
 	// Materialize Initialization for Select
 	$('select').formSelect();
-
 
 
 });
