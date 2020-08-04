@@ -1,6 +1,15 @@
 # High Card Picks Dinner
 Relationship saver! Help couples, friends, roommates fairly choose who picks dinner, and find quality dinner choices.
 
+## Table of Contents
+1. [Description](#description)
+2. [Motivation](#motivation)
+3. [Framework Used](#framework-used)
+4. [API References](#api-references)
+5. [Other Resources](#other-helpful-resources)
+6. [Future Development](#future-development)
+7. [Credits](#credits)
+
 ## Description
 With this app, two players will input their name in the player spots. When the DEAL button is clicked,both players will be dealt a card. The high card earns a point and the first person to score 5 points gets to pick dinner. The API *Deck of Cards* is used for this first part of the app.
 
@@ -11,7 +20,6 @@ The history and search can be accessed any time with links in the nav bar.
 [HIGH CARD PICKS DINNER App](https://tiffany-brand.github.io/high-card-picks-dinner/)
 
 ![HCPDscreenshot](https://user-images.githubusercontent.com/61219066/89104773-d144a900-d3e9-11ea-8427-b69330a37233.jpg)
-
 
 ## Motivation
 This project was created for the UNH Coding Bootcamp. It was our first group project, where we were tasked with coming up with and designing an application to solve a real-world problem.
@@ -29,7 +37,7 @@ With this project, we are also:
 * utilizing new server-side APIs (The Meal DB and Deck of Cards) and new third-party APIs (Animate.css and Chart.js).
 *
 
-## Tech/Framework Used
+## Framework Used
 
 __Built With__
 * Materialize
@@ -40,7 +48,7 @@ __Built With__
 * [Animate.CSS](https://animate.style/)
 * [Chart.js](https://www.chartjs.org/docs/latest/)
 
-## Other helpful resources that we used
+## Other Helpful Resources
 * [Coolors](coolors.co) to help choose color schemes (for the graph)
 
 ## Future Development
@@ -49,7 +57,6 @@ There are a number of features we would like to implement in the future to impro
 2. Add game options/game rules for the user at the beginning. For example, they can choose to have the winner pick the meal and the loser has to cook it; or if utilizing the restaurant option in the future, the loser could have to buy dinner.
 3. Include more search options. For example, rather than just searching by category, users could search by ingredient.
 4. The Meal DB is somewhat limited in it's scope of recipes with only 244 meals available and not all of them have recipes. We would explore other recipe APIs that would provide more options. This could also allow us to expand on search options.
-
 
 ## Credits
 
