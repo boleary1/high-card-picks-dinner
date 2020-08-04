@@ -66,7 +66,7 @@ $(document).ready(function () {
 				}).then(function (mealDisplay) {
 					if (mealDisplay.meals[0].strSource == "" || mealDisplay.meals[0].strSource == null) { //checks if the recipe link is invalid
 						if (mealDisplay.meals[0].strYoutube == "" || mealDisplay.meals[0].strYoutube == null) { //if the recipe link isn't valid,  check for a youtube link
-							const str = ((mealDisplay.meals[0].strMeal).split(' ').join('+')); // if there is no recipe link or youtube link, then google the recipe name.  
+							const str = ((mealDisplay.meals[0].strMeal).split(' ').join('+')); // if there is no recipe link or youtube link, then google the recipe name.
 							mealLink = ("https://www.google.com/search?q=" + str); //writes URL
 						}
 						else {
@@ -190,9 +190,9 @@ $(document).ready(function () {
 				labels: Object.keys(historyChart),
 				datasets: [{
 					label: 'Wins',
-					backgroundColor: ['#005800', '#FBBC0D', '#D30206', '#D85701', '#321372', '#446C60', 'hex(192C37)'],
+					backgroundColor: ['#005800', '#FBBC0D', '#D30206', '#D85701', '#321372', '#446C60', '#192C37'],
 					borderColor: 'black',
-					data: Object.values(historyChart)   //[0, 10, 5, 2, 20, 30, 45]
+					data: Object.values(historyChart)
 				}]
 			},
 
