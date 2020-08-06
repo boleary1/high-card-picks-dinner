@@ -1,6 +1,8 @@
 # High Card Picks Dinner
 Relationship saver! Help couples, friends, roommates fairly choose who picks dinner, and find quality dinner choices.
 
+[HIGH CARD PICKS DINNER App](https://tiffany-brand.github.io/high-card-picks-dinner/)
+
 ## Table of Contents
 1. [Description](#description)
 2. [Motivation](#motivation)
@@ -16,8 +18,6 @@ With this app, two players will click the start button input their name in the p
 Once a score of 5 is reached, the users are taken to a search page, where they can search meals by category. The API *The Meal DB* is called to bring up search results. The results include a link to a recipe page or YouTube video so the users can explore the recipes. Once, they decide what they want, they will click the _+_ to make their selection. This will add the selected recipe to their history, along with the name of the person who picked it and the date. The user can click the Winners Circle button to see a visualization of past winners.
 
 The history can be accessed any time with link in the nav bar, and users can click Home to play again.
-
-[HIGH CARD PICKS DINNER App](https://tiffany-brand.github.io/high-card-picks-dinner/)
 
 ![hcpd-screen](https://user-images.githubusercontent.com/16748389/89475705-be6a0580-d756-11ea-81b6-873da43e989b.JPG)
 
@@ -44,7 +44,7 @@ WE WANT to be able to choose dinner without fighting
 SO THAT we stay together.
 
 AS A group of friends
-WE WANT a fair way to decide who picks dinner 
+WE WANT a fair way to decide who picks dinner
 SO THAT we don’t argue too long while everyone is hangry.
 
 AS A roommates
