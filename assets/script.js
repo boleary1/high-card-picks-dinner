@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 	// Selectors for main divs - game, recipe search, meal history
 	const gameDiv = $('div#game-div');
 	const startBtn = $('button#start-btn');
@@ -40,18 +40,18 @@ $(document).ready(function() {
 	let p1Name;
 	let p2Name;
 
-	$('#submit-start').click(function() {
+	$('#submit-start').click(function () {
 		p1Name = p1NameEl.val();
 		p2Name = p2NameEl.val();
 		$('#p1-name').html(p1Name);
 		$('#p2-name').html(p2Name);
 		$('#deal-btn').removeClass('hide');
 	});
-	$('#deal-btn').click(function() {
+	$('#deal-btn').click(function () {
 		$.ajax({
 			url: 'https://deckofcardsapi.com/api/deck/new/draw/?count=52',
 			method: 'GET'
-		}).then(function(response) {
+		}).then(function (response) {
 			let newDeck = response.cards;
 
 			for (var i = 0; i < newDeck.length; i++) {
@@ -132,7 +132,7 @@ $(document).ready(function() {
 
 	let selectedCategory;
 
-	$('#search-btn').on('click', function() {
+	$('#search-btn').on('click', function () {
 		event.preventDefault();
 		optionsContainer.empty(); //clear out last search
 
@@ -141,9 +141,9 @@ $(document).ready(function() {
 			// this ajax call will display recipes in a selected cattagory
 			url: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=' + selectedCategory,
 			method: 'GET'
-		}).then(function(responseRecipeSelection) {
+		}).then(function (responseRecipeSelection) {
 			let b = responseRecipeSelection.meals; //creates an array of meal options in a category
-			b.forEach(function(displayoptions) {
+			b.forEach(function (displayoptions) {
 				const mealId = displayoptions.idMeal;
 				let mealLink = '';
 
@@ -153,7 +153,7 @@ $(document).ready(function() {
 					//this ajax call gets the URL for the recipe I wrote the HTML inside this, to get the URL before I write the HTML
 					url: mealRecipe,
 					method: 'GET'
-				}).then(function(mealDisplay) {
+				}).then(function (mealDisplay) {
 					if (mealDisplay.meals[0].strSource == '' || mealDisplay.meals[0].strSource == null) {
 						//checks if the recipe link is invalid
 						if (mealDisplay.meals[0].strYoutube == '' || mealDisplay.meals[0].strYoutube == null) {
@@ -209,7 +209,7 @@ $(document).ready(function() {
 		// If history data exists, create a card for each object and add the img, meal name, who picked it, date, and link
 		if (historyData[0].Name) {
 			historyContainer.empty();
-			historyData.forEach(function(object) {
+			historyData.forEach(function (object) {
 				const historyDiv = $('<div>').addClass('col s12 m6 l3'); //Changed these classes a little
 				const historyCard = $('<div>').addClass('card');
 				const cardImgDiv = $('<div>').addClass('card-img');
@@ -247,7 +247,7 @@ $(document).ready(function() {
 	function saveMeal(newObj) {
 		// If the name in the first history object is blank, set the historyData to the new object; otherwise, ad the new object to the array
 		if (!historyData[0].Name) {
-			historyData = [ newObj ];
+			historyData = [newObj];
 		} else {
 			historyData.push(newObj);
 		}
@@ -261,14 +261,14 @@ $(document).ready(function() {
 	function generateChart() {
 		//Creates an array of all the names from the historyData (stored in mem)
 		let names = [];
-		historyData.forEach(function(obj) {
+		historyData.forEach(function (obj) {
 			names.push(obj.Name);
 		});
 
 		// Takes an array of the winners, and puts the name of each winner in the object once as well as how many times they've won
 		function howManyWins(array) {
 			let winCounts = {};
-			array.forEach(function(name) {
+			array.forEach(function (name) {
 				winCounts[name] = (winCounts[name] || 0) + 1;
 			});
 			return winCounts;
@@ -321,7 +321,7 @@ $(document).ready(function() {
 
 	// Home Button
 
-	homeBtn.on('click', function() {
+	homeBtn.on('click', function () {
 		gameDiv.removeClass('hide');
 		searchDiv.addClass('hide');
 		pastDiv.addClass('hide');
@@ -329,7 +329,7 @@ $(document).ready(function() {
 
 	// Past Meals button
 
-	pastBtn.on('click', function() {
+	pastBtn.on('click', function () {
 		getHistory();
 		populateHistory();
 		pastDiv.removeClass('hide');
@@ -348,25 +348,24 @@ $(document).ready(function() {
 
 	// Name Picker in Modal OK Button - Keep or not after game is done?
 
-	pickerNameBtn.on('click', function() {
+	pickerNameBtn.on('click', function () {
 		winnerName = pickerName.val();
 		winnerNameEl.text(winnerName);
 		pickerName.val('');
 	});
 
-	winnersCircleBtn.on('click', function() {
+	winnersCircleBtn.on('click', function () {
 		generateChart();
 		$('#winners-modal').modal('open');
 	});
 
 	// Pick Recipe Button event handler
 
-	optionsContainer.on('click', 'a.pick-recipe-btn', function(event) {
+	optionsContainer.on('click', 'a.pick-recipe-btn', function (event) {
 		pickedMeal.ImgURL = $(this).siblings()[0].src;
 		pickedMeal.Date = moment().format('L');
 		pickedMeal.Meal = $(this).parent().siblings().children()[0].outerText;
 		pickedMeal.RecipeLink = $(this).parent().siblings().children()[1].href;
-		console.log(winnerName);
 		pickedMeal.Name = winnerName;
 		getHistory();
 		saveMeal(pickedMeal);
