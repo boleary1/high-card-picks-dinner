@@ -6,11 +6,12 @@ Relationship saver! Help couples, friends, roommates fairly choose who picks din
 ## Table of Contents
 1. [Description](#description)
 2. [Motivation](#motivation)
-3. [Framework Used](#framework-used)
-4. [API References](#api-references)
-5. [Other Resources](#other-helpful-resources)
-6. [Future Development](#future-development)
-7. [Credits](#credits)
+3. [CSS Framework](#css-framework)
+4. [Server Side APIs](#server-side-apis)
+5. [Third-Party APIs](#third-party-apis)
+6. [Other Resources](#other-helpful-resources)
+7. [Future Development](#future-development)
+8. [Credits](#credits)
 
 ## Description
 With this app, two players will click the start button input their name in the player spots. When the DEAL button is clicked, both players will be dealt a card. The high card earns a point and the first person to score 5 points gets to pick dinner. The API *Deck of Cards* is used for this first part of the app.
@@ -53,24 +54,22 @@ SO THAT we try new recipes/restaurants.
 
 ```
 
-## Frameworks Used
+## Built With
 
-__Built With__
-
-## CSS Framework
+### CSS Framework
 * [Materialize CSS](https://materializecss.com/)
 
-## Server Side APIs
+### Server Side APIs
 * [The Meal DB](https://www.themealdb.com/api.php)
 * [Deck of Cards](https://deckofcardsapi.com/)
 
-## Third-Party APIs/Libraries
+### Third Party APIs
 * [JQuery](https://jquery.com/)
 * [MomentJS](https://momentjs.com/)
 * [Animate.CSS](https://animate.style/)
 * [Chart.js](https://www.chartjs.org/docs/latest/)
 
-## Other Helpful Resources
+### Other Helpful Resources
 * [Coolors](coolors.co) to help choose color schemes (for the graph)
 
 ## Future Development
