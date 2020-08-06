@@ -15,9 +15,6 @@ $(document).ready(function () {
 	const homeBtn = $('a.home-link');
 	const pastBtn = $('a.past-link');
 
-	// ****** for testing only - hide and show different divs ***** DELETE when done testing
-	// const showSearchBtn = $('a.search-link');
-
 	// array to be used to store the information which will be saves in local storage
 	let historyData = [];
 
@@ -336,15 +333,6 @@ $(document).ready(function () {
 		searchDiv.addClass('hide');
 		gameDiv.addClass('hide');
 	});
-
-	// Search Meals Button - Keep or not after game is done?
-
-	// showSearchBtn.on('click', function() {
-	// 	searchDiv.removeClass('hide');
-	// 	pastDiv.addClass('hide');
-	// 	gameDiv.addClass('hide');
-	// 	$('#search-modal').modal('open');
-	// });
 
 	// Name Picker in Modal OK Button - Keep or not after game is done?
 
