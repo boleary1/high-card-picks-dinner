@@ -1,4 +1,6 @@
 # High Card Picks Dinner
+![license](https://img.shields.io/github/license/tiffany-brand/high-card-picks-dinner?style=plastic)
+
 Relationship saver! Help couples, friends, roommates fairly choose who picks dinner, and find quality dinner choices.
 
 [HIGH CARD PICKS DINNER App](https://tiffany-brand.github.io/high-card-picks-dinner/)
@@ -87,3 +89,6 @@ There are a number of features we would like to implement in the future to impro
 * [Brian O’Leary](https://github.com/boleary1)
 
 
+## License
+
+[MIT License](./LICENSE)
